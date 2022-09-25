@@ -6,8 +6,8 @@
   "env": {
     "node": true
   },
-  "extends": ["plugin:import/recommended", "airbnb-typescript"],
-  "plugins": ["import"],
+  "extends": ["plugin:import/recommended", "airbnb-typescript", "prettier", "plugin:prettier/recommended"],
+  "plugins": ["import", "prettier"],
   "rules": {
     "react/jsx-filename-extension": "off"
   }
