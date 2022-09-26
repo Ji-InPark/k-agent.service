@@ -8,6 +8,8 @@ function CompanyList() {
   const [companies, setCompanies] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
+    if (!companyList) return;
+
     const result = companyList.map((company) => {
       return <Company company={company} />;
     });
@@ -15,7 +17,7 @@ function CompanyList() {
     setCompanies(result);
   }, [companyList]);
 
-  return <div>{companyList && companies}</div>;
+  return <div>{companies}</div>;
 }
 
 export default CompanyList;
