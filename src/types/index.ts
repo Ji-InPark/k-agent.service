@@ -8,3 +8,7 @@ export type CompanyType = {
   serviceType: String;
   companyKeyword: String;
 };
+
+export type CompanyListType = {
+  companies: Array<CompanyType>;
+};

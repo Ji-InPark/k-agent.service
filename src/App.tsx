@@ -1,11 +1,14 @@
 import React from 'react';
 import Home from './components/pages/Home';
+import { RecoilRoot } from 'recoil';
 
 function App() {
   return (
-    <div className="App">
-      <Home></Home>
-    </div>
+    <RecoilRoot>
+      <div className="App">
+        <Home></Home>
+      </div>
+    </RecoilRoot>
   );
 }
 

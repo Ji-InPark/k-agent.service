@@ -1,6 +1,7 @@
 import SearchBar from '../components/SearchBar';
 import { css } from '@emotion/react';
 import Header from '../components/Header';
+import CompanyList from '../components/CompanyList';
 
 function Home() {
   return (
@@ -11,8 +12,9 @@ function Home() {
         alignItems: 'center',
       })}
     >
-      <Header></Header>
-      <SearchBar></SearchBar>
+      <Header />
+      <SearchBar />
+      <CompanyList />
     </div>
   );
 }
