@@ -15,7 +15,7 @@ function CompanyList() {
     setCompanies(result);
   }, [companyList]);
 
-  return <div>{companies}</div>;
+  return <div>{companyList && companies}</div>;
 }
 
 export default CompanyList;
