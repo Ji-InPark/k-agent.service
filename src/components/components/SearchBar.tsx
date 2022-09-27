@@ -3,8 +3,8 @@ import { useRef } from 'react';
 import { isNullOrWhiteSpace } from '../../utils';
 import { useSetRecoilState } from 'recoil';
 import { companyListAtoms } from '../../recoil/atoms';
-import axios from 'axios';
 import { CompanyListType } from '../../types';
+import search from '../../axios';
 
 function SearchBar() {
   const setCompanyList = useSetRecoilState(companyListAtoms);
@@ -21,9 +21,12 @@ function SearchBar() {
         return;
       }
 
-      axios.get<CompanyListType>('https://api.anydomaintotest.ml/api/search/' + inputText).then((response) => {
-        setCompanyList(response.data.companies);
-      });
+      search
+        .get<CompanyListType>(inputText)
+        .then((response) => {
+          setCompanyList(response.data.companies);
+        })
+        .catch((error) => console.log(error));
 
       inputElement.current?.blur();
     }
