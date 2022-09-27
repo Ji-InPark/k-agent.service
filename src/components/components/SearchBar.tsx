@@ -21,7 +21,7 @@ function SearchBar() {
         return;
       }
 
-      axios.get<CompanyListType>('/api/search/' + inputText).then((response) => {
+      axios.get<CompanyListType>('https://api.anydomaintotest.ml/api/search/' + inputText).then((response) => {
         setCompanyList(response.data.companies);
       });
 
