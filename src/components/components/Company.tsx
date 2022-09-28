@@ -10,29 +10,47 @@ function Company({ company }: Props) {
     <div
       css={css({
         display: 'flex',
-        width: 600,
+        flexDirection: 'column',
+        maxWidth: 600,
+        width: '50%',
         marginTop: 50,
         borderStyle: 'solid',
+        borderRadius: 15,
+        boxSizing: 'border-box',
+        padding: 5,
       })}
     >
       <div
         css={css({
-          width: '50%',
+          display: 'flex',
+          minHeight: 100,
         })}
       >
-        <div>{company.companyName}</div>
-        <div>기업 업종: {company.companySector}</div>
-        <div>기업 규모: {company.companyScale}</div>
-        <div>복무 형태: {company.serviceType}</div>
-      </div>
-      <div
-        css={css({
-          width: '50%',
-        })}
-      >
-        <div>주소: {company.companyLocation}</div>
-        <div>전화 번호: {company.companyPhoneNumber}</div>
-        <div>팩스 번호: {company.companyFaxNumber}</div>
+        <div
+          css={css({
+            width: '70%',
+          })}
+        >
+          <div css={css({ fontSize: 32 })}>{company.companyName}</div>
+          <div css={css({ fontSize: 24 })}>{company.serviceType}</div>
+          <div>
+            {company.companyScale}({company.companySector})
+          </div>
+          <div>전화 번호: {company.companyPhoneNumber}</div>
+          <div>팩스 번호: {company.companyFaxNumber}</div>
+        </div>
+        <div
+          css={css({
+            width: '30%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          })}
+        >
+          <button onClick={() => window.open('https://map.naver.com/v5/search/' + company.companyLocation, '_blank')}>네이버 지도</button>
+          <button onClick={() => window.open('https://www.wanted.co.kr/search?query=' + company.companyKeyword, '_blank')}>원티드</button>
+          <button onClick={() => window.open('https://www.jobplanet.co.kr/search?query=' + company.companyKeyword, '_blank')}>잡플래닛</button>
+        </div>
       </div>
     </div>
   );
