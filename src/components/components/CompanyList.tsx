@@ -2,6 +2,7 @@ import { useRecoilValue } from 'recoil';
 import { companyListAtoms } from '../../recoil/atoms';
 import Company from './Company';
 import { useEffect, useState } from 'react';
+import { css } from '@emotion/react';
 
 function CompanyList() {
   const companyList = useRecoilValue(companyListAtoms);
@@ -17,7 +18,18 @@ function CompanyList() {
     setCompanies(result);
   }, [companyList]);
 
-  return <div>{companies}</div>;
+  return (
+    <div
+      css={css({
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100%',
+      })}
+    >
+      {companies}
+    </div>
+  );
 }
 
 export default CompanyList;

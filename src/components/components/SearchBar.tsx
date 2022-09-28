@@ -32,7 +32,14 @@ function SearchBar() {
     }
   }
   return (
-    <div>
+    <div
+      css={css({
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100%',
+      })}
+    >
       <p
         css={css({
           textAlign: 'center',
@@ -46,7 +53,8 @@ function SearchBar() {
         css={css({
           textAlign: 'center',
           fontSize: 42,
-          width: 500,
+          width: '40%',
+          maxWidth: 500,
           height: 50,
         })}
         type="text"

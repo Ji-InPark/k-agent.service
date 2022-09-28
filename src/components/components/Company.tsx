@@ -10,7 +10,8 @@ function Company({ company }: Props) {
     <div
       css={css({
         display: 'flex',
-        width: 600,
+        maxWidth: 600,
+        width: '50%',
         marginTop: 50,
         borderStyle: 'solid',
       })}
