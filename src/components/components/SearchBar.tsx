@@ -2,13 +2,14 @@ import { css } from '@emotion/react';
 import { useRef } from 'react';
 import { isNullOrWhiteSpace } from '../../utils';
 import { useSetRecoilState } from 'recoil';
-import { companyListAtoms } from '../../recoil/atoms';
+import { companyListAtoms, isLoadingAtoms } from '../../recoil/atoms';
 import { CompanyListType } from '../../types';
 import search from '../../axios';
 
 function SearchBar() {
   const setCompanyList = useSetRecoilState(companyListAtoms);
   const inputElement = useRef<HTMLInputElement>(null);
+  const setIsLoading = useSetRecoilState(isLoadingAtoms);
   function onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === 'Enter' && event.nativeEvent.isComposing === false) {
       event.preventDefault();
@@ -21,10 +22,12 @@ function SearchBar() {
         return;
       }
 
+      setIsLoading(true);
       search
         .get<CompanyListType>(inputText)
         .then((response) => {
           setCompanyList(response.data.companies);
+          setIsLoading(false);
         })
         .catch((error) => console.log(error));
 
