@@ -11,33 +11,42 @@ function Company({ company }: Props) {
       css={css({
         display: 'flex',
         flexDirection: 'column',
-        maxWidth: 600,
-        width: '50%',
+        maxWidth: 700,
+        width: '80%',
         marginTop: 50,
-        borderStyle: 'solid',
         borderRadius: 10,
         boxSizing: 'border-box',
         padding: 5,
+        boxShadow: 'rgba(149, 157, 165, 0.4) 0px 8px 24px',
       })}
     >
+      <div css={css({ textAlign: 'center', fontSize: '2.4rem' })}>{company.companyName}</div>
+      <div>
+        <hr />
+      </div>
       <div
         css={css({
           display: 'flex',
+          alignSelf: 'center',
+          width: '70%',
           minHeight: 100,
         })}
       >
         <div
           css={css({
+            display: 'flex',
+            flexDirection: 'column',
             width: '70%',
+            fontSize: '1rem',
+            justifyContent: 'space-between',
           })}
         >
-          <div css={css({ fontSize: 32 })}>{company.companyName}</div>
-          <div css={css({ fontSize: 24 })}>{company.serviceType}</div>
+          <div css={css({ fontSize: '2rem' })}>{company.serviceType}</div>
           <div>
             {company.companyScale}({company.companySector})
           </div>
-          <div>전화 번호: {company.companyPhoneNumber}</div>
-          <div>팩스 번호: {company.companyFaxNumber}</div>
+          <div>tel: {company.companyPhoneNumber}</div>
+          <div>fax: {company.companyFaxNumber}</div>
         </div>
         <div
           css={css({
