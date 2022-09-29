@@ -47,6 +47,7 @@ function SearchBar() {
         css={css({
           textAlign: 'center',
           marginTop: 50,
+          fontSize: '1rem',
         })}
       >
         기업을 검색하세요.
@@ -56,7 +57,7 @@ function SearchBar() {
         css={css({
           textAlign: 'center',
           fontSize: 42,
-          width: '40%',
+          width: '70%',
           maxWidth: 500,
           height: 50,
         })}
