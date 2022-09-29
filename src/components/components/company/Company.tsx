@@ -1,4 +1,4 @@
-import { CompanyType } from '../../types';
+import { CompanyType } from '../../../types';
 import { css } from '@emotion/react';
 
 type Props = {
@@ -20,7 +20,15 @@ function Company({ company }: Props) {
         boxShadow: 'rgba(149, 157, 165, 0.4) 0px 8px 24px',
       })}
     >
-      <div css={css({ textAlign: 'center', fontSize: '2.4rem' })}>{company.companyName}</div>
+      <div
+        css={css({
+          textAlign: 'center',
+          fontSize: '2rem',
+          fontWeight: 'bold',
+        })}
+      >
+        {company.companyName}
+      </div>
       <div>
         <hr />
       </div>
@@ -41,7 +49,7 @@ function Company({ company }: Props) {
             justifyContent: 'space-between',
           })}
         >
-          <div css={css({ fontSize: '2rem' })}>{company.serviceType}</div>
+          <div css={css({ fontSize: '1.5rem', fontWeight: 'bold' })}>{company.serviceType}</div>
           <div>
             {company.companyScale}({company.companySector})
           </div>

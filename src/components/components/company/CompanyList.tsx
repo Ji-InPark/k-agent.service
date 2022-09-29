@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil';
-import { companyListAtoms } from '../../recoil/atoms';
+import { companyListAtoms } from '../../../recoil/atoms';
 import Company from './Company';
 import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
