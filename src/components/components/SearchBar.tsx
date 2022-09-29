@@ -46,7 +46,7 @@ function SearchBar() {
       <p
         css={css({
           textAlign: 'center',
-          marginTop: 50,
+          marginTop: '2rem',
           fontSize: '1rem',
         })}
       >
