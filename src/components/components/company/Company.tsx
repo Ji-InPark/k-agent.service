@@ -93,6 +93,7 @@ function Company({ company }: Props) {
             display: 'flex',
             background: Colors.NAVER,
             border: 'none',
+            color: 'white',
             fontSize: '1.5rem',
             cursor: 'pointer',
             textAlign: 'center',
