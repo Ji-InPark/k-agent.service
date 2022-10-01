@@ -130,7 +130,7 @@ function Company({ company }: Props) {
           />
         </div>
         <div
-          css={buttonStyle('#FFFFF0')}
+          css={buttonStyle(Colors.WANTED)}
           onClick={() => window.open('https://www.jobkorea.co.kr/Search/?stext=' + company.companyKeyword + '&tabType=corp&Page_No=1', '_blank')}
         >
           <img
@@ -150,7 +150,15 @@ function Company({ company }: Props) {
             alt="로켓펀치"
           />
         </div>
-        <button onClick={() => window.open('https://www.jobplanet.co.kr/search?query=' + company.companyKeyword, '_blank')}>잡플래닛</button>
+          <div css={buttonStyle('#FFFFF0')} onClick={() => window.open('https://www.jobplanet.co.kr/search?query=' + company.companyKeyword, '_blank')}>
+              <img
+                  css={css({
+                      maxWidth: '60%',
+                  })}
+                  src="https://jpassets.jobplanet.co.kr/production/uploads/material/media/2746/img_logo_jp_200217.png"
+                  alt="잡플래닛"
+              />
+          </div>
       </div>
     </div>
   );
