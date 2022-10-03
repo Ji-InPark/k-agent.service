@@ -4,6 +4,7 @@ const Colors = {
   NAVERGREEN: '#01C73C',
   LIGHTVIOLET: '#C0C5EB',
   LIGHTBEIGE: '#FFFFF0',
+  LIGHTSKY: '#D3EEFF',
 };
 
 export default Colors;

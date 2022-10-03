@@ -64,7 +64,7 @@ function Company({ company }: Props) {
           width: '80%',
           alignSelf: 'center',
           marginTop: '1rem',
-          gridTemplateRows: 'repeat(3, minmax(3rem, 3rem))',
+          gridTemplateRows: 'repeat(4, minmax(3rem, 3rem))',
           gridTemplateColumns: 'repeat(2, 1fr)',
           gap: '1rem',
         })}
@@ -126,6 +126,21 @@ function Company({ company }: Props) {
             imageAlt={'잡플래닛'}
             imageWidth={'60%'}
             imageHeight={undefined}
+            buttonText={undefined}
+          />
+        </div>
+        <div
+          css={css({
+            gridColumn: '1 / 3',
+          })}
+        >
+          <CompanyButton
+            buttonBackgroundColor={Colors.LIGHTSKY}
+            buttonOnClickUrl={'https://kreditjob.com/company/' + company.kreditJobKey}
+            buttonImageUrl={'https://image.wanted.co.kr/kreditjob/www/logo-kreditjob@2x.png'}
+            imageAlt={'크레딧잡'}
+            imageWidth={undefined}
+            imageHeight={'80%'}
             buttonText={undefined}
           />
         </div>
