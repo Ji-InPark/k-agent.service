@@ -7,6 +7,7 @@ export type CompanyType = {
   companyScale: String;
   serviceType: String;
   companyKeyword: String;
+  kreditJobKey: String;
 };
 
 export type CompanyListType = {

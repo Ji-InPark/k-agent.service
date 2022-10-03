@@ -9,6 +9,7 @@
   "extends": ["plugin:import/recommended", "airbnb-typescript", "prettier", "plugin:prettier/recommended"],
   "plugins": ["import", "prettier"],
   "rules": {
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
   }
 }
