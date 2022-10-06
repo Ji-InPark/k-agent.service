@@ -25,6 +25,8 @@ function CompanyList() {
         flexDirection: 'column',
         alignItems: 'center',
         width: '100vw',
+        maxHeight: '70vh',
+        overflow: 'auto',
       })}
     >
       {companies}

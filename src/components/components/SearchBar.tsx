@@ -1,15 +1,17 @@
 import { css } from '@emotion/react';
-import { useEffect, useRef } from 'react';
-import { isNullOrWhiteSpace } from '../../utils';
+import { useEffect, useRef, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { companyListAtoms, isLoadingAtoms } from '../../recoil/atoms';
 import { CompanyListType } from '../../types';
 import search from '../../axios';
+import { isNullOrWhiteSpace } from '../../utils';
 
 function SearchBar() {
   const setCompanyList = useSetRecoilState(companyListAtoms);
   const inputElement = useRef<HTMLInputElement>(null);
   const setIsLoading = useSetRecoilState(isLoadingAtoms);
+  const [governmentLocation, setGovernmentLocation] = useState<String>('');
+  const [sector, setSector] = useState<String>('');
 
   useEffect(() => {
     const focus = (e: any) => {
@@ -27,6 +29,8 @@ function SearchBar() {
     return () => window.removeEventListener('keydown', focus);
   });
 
+  useEffect(() => {}, []);
+
   function onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === 'Enter' && event.nativeEvent.isComposing === false) {
       event.preventDefault();
@@ -35,18 +39,20 @@ function SearchBar() {
 
       event.currentTarget.value = '';
 
-      if (isNullOrWhiteSpace(inputText)) {
-        return;
-      }
+      if (isNullOrWhiteSpace(inputText)) return;
 
       setIsLoading(true);
       search
-        .get<CompanyListType>(inputText)
+        .post<CompanyListType>('search', {
+          companyName: inputText,
+          governmentLocation: governmentLocation,
+          sector: sector,
+        })
         .then((response) => {
           setCompanyList(response.data.companies);
-          setIsLoading(false);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
+        .finally(() => setIsLoading(false));
     }
   }
   return (
@@ -77,7 +83,7 @@ function SearchBar() {
           fontSize: 42,
           width: '70%',
           maxWidth: 500,
-          height: 50,
+          height: '2.5rem',
         })}
         type="text"
         name=""
@@ -93,14 +99,28 @@ function SearchBar() {
           maxWidth: 500,
         })}
       >
-        <select>
-          <option value="none">=== 지역 ===</option>
-          <option value="korean">한국어</option>
-          <option value="english">영어</option>
-          <option value="chinese">중국어</option>
-          <option value="spanish">스페인어</option>
+        <select onChange={(e) => setGovernmentLocation(e.target.value)}>
+          <option
+            css={css({
+              textAlign: 'center',
+            })}
+            value=""
+          >
+            전체 지역
+          </option>
+          {/* 정부청 가져와서 처리*/}
         </select>
-        <div>test</div>
+        <select onChange={(e) => setSector(e.target.value)}>
+          <option
+            css={css({
+              textAlign: 'center',
+            })}
+            value=""
+          >
+            전체 업종
+          </option>
+          {/* 업종 가져와서 처리*/}
+        </select>
         <button>조회</button>
       </div>
     </div>
