@@ -52,10 +52,11 @@ function SearchBar() {
   return (
     <div
       css={css({
-        display: 'flex',
-        flexDirection: 'column',
+        display: 'grid',
+        gridTemplateRows: '1fr 1fr 1fr',
         alignItems: 'center',
         width: '100%',
+        marginBottom: 25,
       })}
     >
       <p
@@ -72,6 +73,7 @@ function SearchBar() {
         onKeyDown={onKeyDown}
         css={css({
           textAlign: 'center',
+          justifySelf: 'center',
           fontSize: 42,
           width: '70%',
           maxWidth: 500,
@@ -81,6 +83,26 @@ function SearchBar() {
         name=""
         id=""
       />
+      <div
+        css={css({
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '2rem',
+          justifySelf: 'center',
+          width: '70%',
+          maxWidth: 500,
+        })}
+      >
+        <select>
+          <option value="none">=== 지역 ===</option>
+          <option value="korean">한국어</option>
+          <option value="english">영어</option>
+          <option value="chinese">중국어</option>
+          <option value="spanish">스페인어</option>
+        </select>
+        <div>test</div>
+        <button>조회</button>
+      </div>
     </div>
   );
 }
