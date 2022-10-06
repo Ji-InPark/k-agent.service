@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { isNullOrWhiteSpace } from '../../utils';
 import { useSetRecoilState } from 'recoil';
 import { companyListAtoms, isLoadingAtoms } from '../../recoil/atoms';
@@ -10,6 +10,23 @@ function SearchBar() {
   const setCompanyList = useSetRecoilState(companyListAtoms);
   const inputElement = useRef<HTMLInputElement>(null);
   const setIsLoading = useSetRecoilState(isLoadingAtoms);
+
+  useEffect(() => {
+    const focus = (e: any) => {
+      if (e.key === '/' && !inputElement.current?.onfocus) {
+        e.preventDefault();
+
+        inputElement.current?.focus();
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+
+        inputElement.current?.blur();
+      }
+    };
+    window.addEventListener('keydown', focus);
+    return () => window.removeEventListener('keydown', focus);
+  });
+
   function onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === 'Enter' && event.nativeEvent.isComposing === false) {
       event.preventDefault();
@@ -30,8 +47,6 @@ function SearchBar() {
           setIsLoading(false);
         })
         .catch((error) => console.log(error));
-
-      inputElement.current?.blur();
     }
   }
   return (
@@ -53,6 +68,7 @@ function SearchBar() {
         기업을 검색하세요.
       </p>
       <input
+        ref={inputElement}
         onKeyDown={onKeyDown}
         css={css({
           textAlign: 'center',
