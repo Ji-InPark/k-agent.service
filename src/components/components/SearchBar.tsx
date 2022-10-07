@@ -137,7 +137,15 @@ function SearchBar() {
           </option>
           {governmentLocations}
         </select>
-        <select onChange={(e) => setSector(e.target.value)}>
+        <select
+          css={css({
+            width: '100%',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+          })}
+          onChange={(e) => setSector(e.target.value)}
+        >
           <option
             css={css({
               textAlign: 'center',
