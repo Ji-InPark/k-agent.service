@@ -70,8 +70,7 @@ function SearchBar() {
       .then((response) => {
         setCompanyList(response.data);
       })
-      .catch((error) => console.log(error))
-      .finally(() => setIsLoading(false));
+      .catch((error) => console.log(error));
   }
 
   function onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
