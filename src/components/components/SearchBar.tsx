@@ -4,7 +4,6 @@ import { useSetRecoilState } from 'recoil';
 import { companyListAtoms, isLoadingAtoms } from '../../recoil/atoms';
 import { CompanyListType } from '../../types';
 import search from '../../axios';
-import { isNullOrWhiteSpace } from '../../utils';
 
 function SearchBar() {
   const setCompanyList = useSetRecoilState(companyListAtoms);
@@ -39,11 +38,9 @@ function SearchBar() {
 
       event.currentTarget.value = '';
 
-      if (isNullOrWhiteSpace(inputText)) return;
-
       setIsLoading(true);
       search
-        .post<CompanyListType>('search', {
+        .post<CompanyListType>('/search', {
           companyName: inputText,
           governmentLocation: governmentLocation,
           sector: sector,
