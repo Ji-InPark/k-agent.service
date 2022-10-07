@@ -12,4 +12,5 @@ export type CompanyType = {
 
 export type CompanyListType = {
   companies: Array<CompanyType>;
+  companyCount: number;
 };

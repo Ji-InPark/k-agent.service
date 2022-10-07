@@ -4,6 +4,7 @@ import { useSetRecoilState } from 'recoil';
 import { companyListAtoms, isLoadingAtoms } from '../../recoil/atoms';
 import { CompanyListType } from '../../types';
 import search from '../../axios';
+import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
 
 function SearchBar() {
   const setCompanyList = useSetRecoilState(companyListAtoms);
@@ -11,6 +12,8 @@ function SearchBar() {
   const setIsLoading = useSetRecoilState(isLoadingAtoms);
   const [governmentLocation, setGovernmentLocation] = useState<String>('');
   const [sector, setSector] = useState<String>('');
+  const [governmentLocations, setGovernmentLocations] = useState<EmotionJSX.Element[]>([]);
+  const [sectors, setSectors] = useState<EmotionJSX.Element[]>([]);
 
   useEffect(() => {
     const focus = (e: any) => {
@@ -28,28 +31,56 @@ function SearchBar() {
     return () => window.removeEventListener('keydown', focus);
   });
 
-  useEffect(() => {}, []);
+  function getGovernmentLocations() {
+    search.get<Array<String>>('/government-locations').then((response) => {
+      setGovernmentLocations(
+        response.data.map((s) => {
+          return <option value={s.toString()}>{s}</option>;
+        }),
+      );
+    });
+  }
+
+  function getSectors() {
+    search.get<Array<String>>('/sectors').then((response) => {
+      setSectors(
+        response.data.map((s) => {
+          return <option value={s.toString()}>{s}</option>;
+        }),
+      );
+    });
+  }
+
+  useEffect(() => {
+    getGovernmentLocations();
+    getSectors();
+  }, []);
+
+  function searchCompany() {
+    const inputText = inputElement.current?.value;
+
+    setIsLoading(true);
+
+    search
+      .post<CompanyListType>('/search', {
+        companyName: inputText,
+        governmentLocation: governmentLocation,
+        sector: sector,
+      })
+      .then((response) => {
+        setCompanyList(response.data);
+      })
+      .catch((error) => console.log(error))
+      .finally(() => setIsLoading(false));
+  }
 
   function onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === 'Enter' && event.nativeEvent.isComposing === false) {
       event.preventDefault();
 
-      const inputText = event.currentTarget.value;
+      searchCompany();
 
       event.currentTarget.value = '';
-
-      setIsLoading(true);
-      search
-        .post<CompanyListType>('/search', {
-          companyName: inputText,
-          governmentLocation: governmentLocation,
-          sector: sector,
-        })
-        .then((response) => {
-          setCompanyList(response.data.companies);
-        })
-        .catch((error) => console.log(error))
-        .finally(() => setIsLoading(false));
     }
   }
   return (
@@ -105,7 +136,7 @@ function SearchBar() {
           >
             전체 지역
           </option>
-          {/* 정부청 가져와서 처리*/}
+          {governmentLocations}
         </select>
         <select onChange={(e) => setSector(e.target.value)}>
           <option
@@ -116,9 +147,9 @@ function SearchBar() {
           >
             전체 업종
           </option>
-          {/* 업종 가져와서 처리*/}
+          {sectors}
         </select>
-        <button>조회</button>
+        <button onClick={searchCompany}>조회</button>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ function CompanyList() {
   useEffect(() => {
     if (!companyList) return;
 
-    const result = companyList.map((company) => {
+    const result = companyList.companies.map((company) => {
       return <Company company={company} />;
     });
 
@@ -29,6 +29,7 @@ function CompanyList() {
         overflow: 'auto',
       })}
     >
+      <div>검색 결과: {companyList.companyCount}건</div>
       {companies}
     </div>
   );

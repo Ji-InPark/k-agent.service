@@ -1,9 +1,9 @@
 import { atom } from 'recoil';
-import { CompanyType } from '../types';
+import { CompanyListType } from '../types';
 
-export const companyListAtoms = atom<Array<CompanyType>>({
+export const companyListAtoms = atom<CompanyListType>({
   key: 'companyListAtoms',
-  default: [],
+  default: { companies: [], companyCount: 0 },
 });
 
 export const isLoadingAtoms = atom<boolean>({
