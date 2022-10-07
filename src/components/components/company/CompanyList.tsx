@@ -1,13 +1,14 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { companyListAtoms, isLoadingAtoms } from '../../../recoil/atoms';
 import Company from './Company';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { css } from '@emotion/react';
 
 function CompanyList() {
   const companyList = useRecoilValue(companyListAtoms);
   const [companies, setCompanies] = useState<JSX.Element[]>([]);
   const setIsLoading = useSetRecoilState(isLoadingAtoms);
+  const resultView = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!companyList) return;
@@ -16,6 +17,8 @@ function CompanyList() {
       return <Company company={company} />;
     });
 
+    resultView.current?.scroll(0, 0);
+
     setCompanies(result);
   }, [companyList]);
 
@@ -23,6 +26,7 @@ function CompanyList() {
 
   return (
     <div
+      ref={resultView}
       css={css({
         display: 'flex',
         flexDirection: 'column',
