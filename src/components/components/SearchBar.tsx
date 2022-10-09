@@ -35,7 +35,11 @@ function SearchBar() {
     search.get<Array<String>>('/government-locations').then((response) => {
       setGovernmentLocations(
         response.data.map((s) => {
-          return <option value={s.toString()}>{s}</option>;
+          return (
+            <option key={s.toString()} value={s.toString()}>
+              {s}
+            </option>
+          );
         }),
       );
     });
@@ -45,7 +49,11 @@ function SearchBar() {
     search.get<Array<String>>('/sectors').then((response) => {
       setSectors(
         response.data.map((s) => {
-          return <option value={s.toString()}>{s}</option>;
+          return (
+            <option key={s.toString()} value={s.toString()}>
+              {s}
+            </option>
+          );
         }),
       );
     });
