@@ -14,7 +14,7 @@ function CompanyList() {
     if (!companyList) return;
 
     const result = companyList.companies.map((company) => {
-      return <Company company={company} />;
+      return <Company key={company.id} company={company} />;
     });
 
     resultView.current?.scroll(0, 0);
