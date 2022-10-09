@@ -1,4 +1,5 @@
 export type CompanyType = {
+  id: number;
   companyName: String;
   companyLocation: String;
   companyPhoneNumber: String;
