@@ -1,4 +1,4 @@
-import SearchBar from '../components/SearchBar';
+import SearchBar from '../components/search-bar/SearchBar';
 import { css } from '@emotion/react';
 import Header from '../components/Header';
 import CompanyList from '../components/company/CompanyList';

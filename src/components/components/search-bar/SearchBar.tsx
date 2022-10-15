@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
 import { useEffect, useRef, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { companyListAtoms, isLoadingAtoms } from '../../recoil/atoms';
-import { CompanyListType } from '../../types';
-import search from '../../axios';
+import { companyListAtoms, isLoadingAtoms } from '../../../recoil/atoms';
+import { CompanyListType } from '../../../types';
+import search from '../../../axios';
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
 
 function SearchBar() {
