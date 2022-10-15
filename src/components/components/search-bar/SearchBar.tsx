@@ -15,7 +15,7 @@ function SearchBar() {
 
   useEffect(() => {
     const focus = (e: any) => {
-      if (e.key === '/' && !inputElement.current?.onfocus) {
+      if (e.key === '/' && inputElement.current !== document.activeElement) {
         e.preventDefault();
 
         inputElement.current?.focus();
