@@ -4,7 +4,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { companyListAtoms, isLoadingAtoms, selectedGovernmentLocationAtoms, selectedSectorAtoms } from '../../../recoil/atoms';
 import { CompanyListType } from '../../../types';
 import search from '../../../axios';
-import SearchOption from './SearchOption';
+import SearchOptionContainer from './SearchOptionContainer';
 
 function SearchBar() {
   const setCompanyList = useSetRecoilState(companyListAtoms);
@@ -89,7 +89,7 @@ function SearchBar() {
         name=""
         id=""
       />
-      <SearchOption searchCompany={searchCompany} />
+      <SearchOptionContainer searchCompany={searchCompany} />
     </div>
   );
 }

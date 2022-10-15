@@ -1,93 +1,50 @@
 import React, { useEffect, useState } from 'react';
+import { RecoilState, useSetRecoilState } from 'recoil';
 import { css } from '@emotion/react';
 import search from '../../../axios';
-import { useSetRecoilState } from 'recoil';
-import { selectedGovernmentLocationAtoms, selectedSectorAtoms } from '../../../recoil/atoms';
 
 type Props = {
-  searchCompany: () => void;
+  recoilVariable: RecoilState<string>;
+  apiUrl: string;
+  defaultText: string;
 };
 
-function SearchOption({ searchCompany }: Props) {
-  const [governmentLocations, setGovernmentLocations] = useState<string[]>([]);
-  const [sectors, setSectors] = useState<string[]>([]);
-  const setSelectedGovernmentLocation = useSetRecoilState(selectedGovernmentLocationAtoms);
-  const setSelectedSector = useSetRecoilState(selectedSectorAtoms);
-
-  function getGovernmentLocations() {
-    search.get<Array<string>>('/government-locations').then((response) => {
-      setGovernmentLocations(response.data);
-    });
-  }
-
-  function getSectors() {
-    search.get<Array<string>>('/sectors').then((response) => {
-      setSectors(response.data);
-    });
-  }
+function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
+  const [strings, setStrings] = useState<Array<string>>([]);
+  const setSelectedString = useSetRecoilState(recoilVariable);
 
   useEffect(() => {
-    getGovernmentLocations();
-    getSectors();
+    search.get<Array<string>>(apiUrl).then((response) => {
+      setStrings(response.data);
+    });
   });
 
-  function convertToOptionElements(strings: string[]) {
-    return (
-      <>
-        {strings.map((s) => {
-          return (
-            <option key={s.toString()} value={s.toString()}>
-              {s}
-            </option>
-          );
-        })}
-      </>
-    );
-  }
-
   return (
-    <div
+    <select
       css={css({
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: '2rem',
-        justifySelf: 'center',
-        width: '70%',
-        maxWidth: 500,
+        width: '100%',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
       })}
+      onChange={(e) => setSelectedString(e.target.value)}
     >
-      <select onChange={(e) => setSelectedGovernmentLocation(e.target.value)}>
-        <option
-          css={css({
-            textAlign: 'center',
-          })}
-          value=""
-        >
-          전체 지역
-        </option>
-        {convertToOptionElements(governmentLocations)}
-      </select>
-      <select
+      <option
         css={css({
-          width: '100%',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
+          textAlign: 'center',
         })}
-        onChange={(e) => setSelectedSector(e.target.value)}
+        value=""
       >
-        <option
-          css={css({
-            textAlign: 'center',
-          })}
-          value=""
-        >
-          전체 업종
-        </option>
-        {convertToOptionElements(sectors)}
-      </select>
-      <button onClick={searchCompany}>조회</button>
-    </div>
+        {defaultText}
+      </option>
+      {strings.map((s) => {
+        return (
+          <option key={s.toString()} value={s.toString()}>
+            {s}
+          </option>
+        );
+      })}
+    </select>
   );
 }
 
