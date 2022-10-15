@@ -1,19 +1,17 @@
 import { css } from '@emotion/react';
-import { useEffect, useRef, useState } from 'react';
-import { useSetRecoilState } from 'recoil';
-import { companyListAtoms, isLoadingAtoms } from '../../../recoil/atoms';
+import { useEffect, useRef } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { companyListAtoms, isLoadingAtoms, selectedGovernmentLocationAtoms, selectedSectorAtoms } from '../../../recoil/atoms';
 import { CompanyListType } from '../../../types';
 import search from '../../../axios';
-import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
+import SearchOption from './SearchOption';
 
 function SearchBar() {
   const setCompanyList = useSetRecoilState(companyListAtoms);
   const inputElement = useRef<HTMLInputElement>(null);
   const setIsLoading = useSetRecoilState(isLoadingAtoms);
-  const [governmentLocation, setGovernmentLocation] = useState<String>('');
-  const [sector, setSector] = useState<String>('');
-  const [governmentLocations, setGovernmentLocations] = useState<EmotionJSX.Element[]>([]);
-  const [sectors, setSectors] = useState<EmotionJSX.Element[]>([]);
+  const governmentLocation = useRecoilValue(selectedGovernmentLocationAtoms);
+  const sector = useRecoilValue(selectedSectorAtoms);
 
   useEffect(() => {
     const focus = (e: any) => {
@@ -30,39 +28,6 @@ function SearchBar() {
     window.addEventListener('keydown', focus);
     return () => window.removeEventListener('keydown', focus);
   });
-
-  function getGovernmentLocations() {
-    search.get<Array<String>>('/government-locations').then((response) => {
-      setGovernmentLocations(
-        response.data.map((s) => {
-          return (
-            <option key={s.toString()} value={s.toString()}>
-              {s}
-            </option>
-          );
-        }),
-      );
-    });
-  }
-
-  function getSectors() {
-    search.get<Array<String>>('/sectors').then((response) => {
-      setSectors(
-        response.data.map((s) => {
-          return (
-            <option key={s.toString()} value={s.toString()}>
-              {s}
-            </option>
-          );
-        }),
-      );
-    });
-  }
-
-  useEffect(() => {
-    getGovernmentLocations();
-    getSectors();
-  }, []);
 
   function searchCompany() {
     const inputText = inputElement.current?.value;
@@ -124,48 +89,7 @@ function SearchBar() {
         name=""
         id=""
       />
-      <div
-        css={css({
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '2rem',
-          justifySelf: 'center',
-          width: '70%',
-          maxWidth: 500,
-        })}
-      >
-        <select onChange={(e) => setGovernmentLocation(e.target.value)}>
-          <option
-            css={css({
-              textAlign: 'center',
-            })}
-            value=""
-          >
-            전체 지역
-          </option>
-          {governmentLocations}
-        </select>
-        <select
-          css={css({
-            width: '100%',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-          })}
-          onChange={(e) => setSector(e.target.value)}
-        >
-          <option
-            css={css({
-              textAlign: 'center',
-            })}
-            value=""
-          >
-            전체 업종
-          </option>
-          {sectors}
-        </select>
-        <button onClick={searchCompany}>조회</button>
-      </div>
+      <SearchOption searchCompany={searchCompany} />
     </div>
   );
 }
