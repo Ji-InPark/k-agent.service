@@ -17,7 +17,7 @@ function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
     search.get<Array<string>>(apiUrl).then((response) => {
       setStrings(response.data);
     });
-  });
+  }, []);
 
   return (
     <select
