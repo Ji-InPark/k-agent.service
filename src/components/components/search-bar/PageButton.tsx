@@ -12,13 +12,16 @@ function PageButton({ text, onClick }: Props) {
   const selectedPageNumber = useRecoilValue(selectedPageNumberAtoms);
 
   return (
-    <button
+    <span
       css={css({
-        textAlign: 'center',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         background: text == String(selectedPageNumber + 1) ? Colors.LIGHTSKY : 'white',
         height: '2rem',
         width: '2rem',
         border: 'none',
+        fontSize: '1rem',
         borderRadius: '50%',
         '&:hover': {
           background: 'skyblue',
@@ -28,7 +31,7 @@ function PageButton({ text, onClick }: Props) {
       onClick={onClick}
     >
       {text}
-    </button>
+    </span>
   );
 }
 
