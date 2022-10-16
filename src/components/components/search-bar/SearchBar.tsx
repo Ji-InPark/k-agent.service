@@ -5,6 +5,7 @@ import { companyListAtoms, isLoadingAtoms, selectedGovernmentLocationAtoms, sele
 import { CompanyListType } from '../../../types';
 import search from '../../../axios';
 import SearchOptionContainer from './SearchOptionContainer';
+import PaginationContainer from './PaginationContainer';
 
 function SearchBar() {
   const setCompanyList = useSetRecoilState(companyListAtoms);
@@ -55,11 +56,12 @@ function SearchBar() {
       event.currentTarget.value = '';
     }
   }
+
   return (
     <div
       css={css({
         display: 'grid',
-        gridTemplateRows: '1fr 1fr 1fr',
+        gridTemplateRows: 'repeat(4, 1fr)',
         alignItems: 'center',
         width: '100%',
         marginBottom: 25,
@@ -68,7 +70,6 @@ function SearchBar() {
       <p
         css={css({
           textAlign: 'center',
-          marginTop: '2rem',
           fontSize: '1rem',
         })}
       >
@@ -80,16 +81,17 @@ function SearchBar() {
         css={css({
           textAlign: 'center',
           justifySelf: 'center',
-          fontSize: 42,
+          fontSize: '2rem',
           width: '70%',
           maxWidth: 500,
-          height: '2.5rem',
+          height: '2rem',
         })}
         type="text"
         name=""
         id=""
       />
       <SearchOptionContainer searchCompany={searchCompany} />
+      <PaginationContainer />
     </div>
   );
 }

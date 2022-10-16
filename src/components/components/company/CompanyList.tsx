@@ -36,7 +36,6 @@ function CompanyList() {
         overflow: 'auto',
       })}
     >
-      <div>검색 결과: {companyList.companyCount}건</div>
       {companies}
     </div>
   );
