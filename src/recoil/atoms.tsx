@@ -30,6 +30,15 @@ export const lastPageNumberSelector = selector<number>({
   },
 });
 
+export const firstPageNumberInCurrentContainerSelector = selector<number>({
+  key: 'firstPageNumberInCurrentContainerSelector',
+  get: ({ get }) => {
+    const selectedPageNumber = get(selectedPageNumberAtoms);
+
+    return selectedPageNumber - (selectedPageNumber % 10);
+  },
+});
+
 export const isLoadingAtoms = atom<boolean>({
   key: 'isLoadingAtoms',
   default: false,
