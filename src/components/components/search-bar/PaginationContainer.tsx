@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import PageButton from './PageButton';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { firstPageNumberInCurrentContainerSelector, lastPageNumberSelector, selectedPageNumberAtoms } from '../../../recoil/atoms';
+import { companyListAtoms, firstPageNumberInCurrentContainerSelector, lastPageNumberSelector, selectedPageNumberAtoms } from '../../../recoil/atoms';
 import { useEffect, useState } from 'react';
 
 function PaginationContainer() {
@@ -9,6 +9,7 @@ function PaginationContainer() {
   const firstPageNumberInCurrentContainer = useRecoilValue(firstPageNumberInCurrentContainerSelector);
   const lastPageNumber = useRecoilValue(lastPageNumberSelector);
   const [currentPageNumbers, setCurrentPageNumbers] = useState<string[]>([]);
+  const companyList = useRecoilValue(companyListAtoms).companies;
 
   useEffect(() => {
     const result = [];
@@ -18,7 +19,7 @@ function PaginationContainer() {
     }
 
     setCurrentPageNumbers(result);
-  }, [firstPageNumberInCurrentContainer]);
+  }, [companyList, firstPageNumberInCurrentContainer]);
 
   return (
     <div

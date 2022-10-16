@@ -1,28 +1,30 @@
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { companyListAtoms, isLoadingAtoms } from '../../../recoil/atoms';
+import { useRecoilValue } from 'recoil';
+import { companyListAtoms, selectedPageNumberAtoms } from '../../../recoil/atoms';
 import Company from './Company';
 import { useEffect, useRef, useState } from 'react';
 import { css } from '@emotion/react';
 
 function CompanyList() {
-  const companyList = useRecoilValue(companyListAtoms);
+  const companyList = useRecoilValue(companyListAtoms).companies;
+  const companyCount = useRecoilValue(companyListAtoms).companyCount;
   const [companies, setCompanies] = useState<JSX.Element[]>([]);
-  const setIsLoading = useSetRecoilState(isLoadingAtoms);
   const resultView = useRef<HTMLDivElement>(null);
+  const selectedPageNumber = useRecoilValue(selectedPageNumberAtoms);
 
   useEffect(() => {
     if (!companyList) return;
 
-    const result = companyList.companies.map((company) => {
-      return <Company key={company.id} company={company} />;
-    });
+    const result = [];
+
+    for (let i = 0; i < Math.min(companyCount - selectedPageNumber, 20); i++) {
+      const company = companyList[selectedPageNumber + i];
+      result.push(<Company key={company.id} company={company} />);
+    }
 
     resultView.current?.scroll(0, 0);
 
     setCompanies(result);
-  }, [companyList]);
-
-  useEffect(() => setIsLoading(false), [companies]);
+  }, [companyList, selectedPageNumber]);
 
   return (
     <div

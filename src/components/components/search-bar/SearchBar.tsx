@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { useEffect, useRef } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { companyListAtoms, isLoadingAtoms, selectedGovernmentLocationAtoms, selectedSectorAtoms } from '../../../recoil/atoms';
+import { companyListAtoms, isLoadingAtoms, selectedGovernmentLocationAtoms, selectedPageNumberAtoms, selectedSectorAtoms } from '../../../recoil/atoms';
 import { CompanyListType } from '../../../types';
 import search from '../../../axios';
 import SearchOptionContainer from './SearchOptionContainer';
@@ -13,6 +13,7 @@ function SearchBar() {
   const setIsLoading = useSetRecoilState(isLoadingAtoms);
   const governmentLocation = useRecoilValue(selectedGovernmentLocationAtoms);
   const sector = useRecoilValue(selectedSectorAtoms);
+  const setSelectedPageNumber = useSetRecoilState(selectedPageNumberAtoms);
 
   useEffect(() => {
     const focus = (e: any) => {
@@ -35,6 +36,8 @@ function SearchBar() {
 
     setIsLoading(true);
 
+    setSelectedPageNumber(0);
+
     search
       .post<CompanyListType>('/search', {
         companyName: inputText,
@@ -44,7 +47,8 @@ function SearchBar() {
       .then((response) => {
         setCompanyList(response.data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => setIsLoading(false));
   }
 
   function onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
