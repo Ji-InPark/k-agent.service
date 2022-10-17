@@ -16,7 +16,7 @@ function CompanyList() {
 
     const result = [];
 
-    for (let i = 0; i < Math.min(companyCount - selectedPageNumber, 20); i++) {
+    for (let i = 0; i < Math.min(companyCount - selectedPageNumber * 20, 20); i++) {
       const company = companyList[selectedPageNumber * 20 + i];
       result.push(<Company key={company.id} company={company} />);
     }
