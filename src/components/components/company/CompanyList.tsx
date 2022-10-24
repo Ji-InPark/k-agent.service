@@ -36,6 +36,9 @@ function CompanyList() {
         width: '100vw',
         maxHeight: '63vh',
         overflow: 'auto',
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        },
       })}
     >
       {companies}
