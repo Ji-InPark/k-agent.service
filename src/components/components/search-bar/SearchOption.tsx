@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { RecoilState, useSetRecoilState } from 'recoil';
 import { css } from '@emotion/react';
 import search from '../../../axios';
+import '../../../utils/index';
 
 type Props = {
   recoilVariable: RecoilState<string>;
@@ -12,12 +13,15 @@ type Props = {
 function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
   const [strings, setStrings] = useState<Array<string>>([]);
   const setSelectedString = useSetRecoilState(recoilVariable);
+  const cachedItem = localStorage.getItem(defaultText);
 
   useEffect(() => {
     search.get<Array<string>>(apiUrl).then((response) => {
       setStrings(response.data);
     });
   }, []);
+
+  if (strings.isEmpty()) return <select></select>;
 
   return (
     <select
@@ -27,7 +31,11 @@ function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
         whiteSpace: 'nowrap',
         overflow: 'hidden',
       })}
-      onChange={(e) => setSelectedString(e.target.value)}
+      onChange={(e) => {
+        setSelectedString(e.target.value);
+        localStorage.setItem(defaultText, e.target.value);
+      }}
+      value={cachedItem ?? ''}
     >
       <option
         css={css({
@@ -37,10 +45,10 @@ function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
       >
         {defaultText}
       </option>
-      {strings.map((s) => {
+      {strings.map((str) => {
         return (
-          <option key={s.toString()} value={s.toString()}>
-            {s}
+          <option key={str} value={str}>
+            {str}
           </option>
         );
       })}
