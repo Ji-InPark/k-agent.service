@@ -1,3 +1,11 @@
-export function isNullOrWhiteSpace(str: String) {
-  return str === null || str.match(/^ *$/) !== null;
+export {};
+
+declare global {
+  interface String {
+    isNullOrWhiteSpace(): boolean;
+  }
 }
+
+String.prototype.isNullOrWhiteSpace = function (): boolean {
+  return this === null || this.match(/^ *$/) !== null;
+};
