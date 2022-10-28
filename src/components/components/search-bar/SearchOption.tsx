@@ -19,6 +19,7 @@ function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
     search.get<Array<string>>(apiUrl).then((response) => {
       setStrings(response.data);
     });
+    setSelectedString(cachedItem ?? '');
   }, []);
 
   if (strings.isEmpty()) return <select></select>;
