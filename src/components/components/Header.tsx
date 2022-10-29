@@ -2,22 +2,17 @@ import { css } from '@emotion/react';
 
 function Header() {
   return (
-    <div css={css({ textAlign: 'center' })}>
+    <div>
       <div
         css={css({
-          fontSize: '4rem',
+          padding: '1rem',
         })}
       >
-        K-Agent
+        <span css={css({ '&:hover': { cursor: 'pointer' } })} onClick={() => window.location.reload()}>
+          <img css={css({ width: '15rem' })} src={require('../../assets/icon/title.png')} />
+        </span>
       </div>
-      <div
-        css={css({
-          fontSize: '2.7rem',
-          marginTop: '0.2rem',
-        })}
-      >
-        간편한 병역특례 업체 조회
-      </div>
+      <hr />
     </div>
   );
 }
