@@ -62,33 +62,31 @@ function SearchBar() {
   }
 
   return (
-    <div css={css({ marginLeft: 'auto', marginRight: 'auto' })}>
-      <div
+    <div
+      css={css({
+        display: 'grid',
+        gridTemplateRows: 'repeat(3, 1fr)',
+        gap: '1rem',
+        alignItems: 'center',
+        padding: '1.5rem',
+      })}
+    >
+      <input
+        ref={inputElement}
+        onKeyDown={onKeyDown}
         css={css({
-          display: 'grid',
-          gridTemplateRows: 'repeat(3, 1fr)',
-          gap: '1rem',
-          alignItems: 'center',
-          padding: '1.5rem',
+          textAlign: 'center',
+          justifySelf: 'center',
+          fontSize: '2rem',
+          width: '70%',
+          maxWidth: 500,
+          height: '2rem',
         })}
-      >
-        <input
-          ref={inputElement}
-          onKeyDown={onKeyDown}
-          css={css({
-            textAlign: 'center',
-            justifySelf: 'center',
-            fontSize: '2rem',
-            width: '70%',
-            maxWidth: 500,
-            height: '2rem',
-          })}
-          type="text"
-          placeholder={'기업을 검색하세요'}
-        />
-        <SearchOptionContainer searchCompany={searchCompany} />
-        <PaginationContainer />
-      </div>
+        type="text"
+        placeholder={'기업을 검색하세요'}
+      />
+      <SearchOptionContainer searchCompany={searchCompany} />
+      <PaginationContainer />
     </div>
   );
 }
