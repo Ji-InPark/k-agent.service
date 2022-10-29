@@ -17,6 +17,8 @@ function Company({ company }: Props) {
         width: '80%',
         marginTop: 25,
         marginBottom: 25,
+        marginLeft: 'auto',
+        marginRight: 'auto',
         borderRadius: 10,
         boxSizing: 'border-box',
         padding: 5,

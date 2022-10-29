@@ -25,7 +25,7 @@ function PaginationContainer() {
     <div
       css={css({
         display: 'grid',
-        gridTemplateColumns: `repeat(14, 1fr)`,
+        gridTemplateColumns: `repeat(${4 + currentPageNumbers.length}, 1fr)`,
         gap: '0.2rem',
         justifySelf: 'center',
       })}

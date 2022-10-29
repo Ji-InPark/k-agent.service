@@ -65,20 +65,12 @@ function SearchBar() {
     <div
       css={css({
         display: 'grid',
-        gridTemplateRows: 'repeat(4, 1fr)',
+        gridTemplateRows: 'repeat(3, 1fr)',
+        gap: '1rem',
         alignItems: 'center',
-        width: '100%',
-        marginBottom: 25,
+        padding: '1.5rem',
       })}
     >
-      <p
-        css={css({
-          textAlign: 'center',
-          fontSize: '1rem',
-        })}
-      >
-        기업을 검색하세요.
-      </p>
       <input
         ref={inputElement}
         onKeyDown={onKeyDown}
@@ -91,8 +83,7 @@ function SearchBar() {
           height: '2rem',
         })}
         type="text"
-        name=""
-        id=""
+        placeholder={'기업을 검색하세요'}
       />
       <SearchOptionContainer searchCompany={searchCompany} />
       <PaginationContainer />

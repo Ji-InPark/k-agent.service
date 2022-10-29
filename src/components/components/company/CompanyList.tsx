@@ -30,11 +30,8 @@ function CompanyList() {
     <div
       ref={resultView}
       css={css({
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
         width: '100vw',
-        maxHeight: '63vh',
+        maxHeight: 'calc(100vh - 15rem - 25px)',
         overflow: 'auto',
         '&::-webkit-scrollbar': {
           display: 'none',
