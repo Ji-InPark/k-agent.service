@@ -48,7 +48,7 @@ function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
       </option>
       {strings.map((str) => {
         return (
-          <option key={str} value={str}>
+          <option css={css({ textAlign: 'center' })} key={str} value={str}>
             {str}
           </option>
         );
