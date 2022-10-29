@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 function Header() {
   return (
-    <div css={css({ background: '#777D71' })}>
+    <div css={css({ background: '#777D71', height: '4rem' })}>
       <div
         css={css({
           padding: '1rem',
