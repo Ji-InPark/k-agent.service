@@ -11,9 +11,6 @@ function Home() {
   return (
     <div
       css={css({
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
         width: '100vw',
       })}
     >
