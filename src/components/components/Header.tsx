@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 function Header() {
   return (
-    <div>
+    <div css={css({ background: '#777D71' })}>
       <div
         css={css({
           padding: '1rem',
@@ -12,7 +12,6 @@ function Header() {
           <img css={css({ width: '15rem' })} src={require('../../assets/icon/title.png')} />
         </span>
       </div>
-      <hr />
     </div>
   );
 }
