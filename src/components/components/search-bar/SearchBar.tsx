@@ -1,11 +1,12 @@
 import { css } from '@emotion/react';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { companyListAtoms, isLoadingAtoms, selectedGovernmentLocationAtoms, selectedPageNumberAtoms, selectedSectorAtoms } from '../../../recoil/atoms';
 import { CompanyListType } from '../../../types';
 import search from '../../../axios';
 import SearchOptionContainer from './search-option/SearchOptionContainer';
 import PaginationContainer from './page/PaginationContainer';
+import SearchInput from './search-input/SearchInput';
 
 function SearchBar() {
   const setCompanyList = useSetRecoilState(companyListAtoms);
@@ -15,23 +16,7 @@ function SearchBar() {
   const sector = useRecoilValue(selectedSectorAtoms);
   const setSelectedPageNumber = useSetRecoilState(selectedPageNumberAtoms);
 
-  useEffect(() => {
-    const focus = (e: any) => {
-      if (e.key === '/' && inputElement.current !== document.activeElement) {
-        e.preventDefault();
-
-        inputElement.current?.focus();
-      } else if (e.key === 'Escape') {
-        e.preventDefault();
-
-        inputElement.current?.blur();
-      }
-    };
-    window.addEventListener('keydown', focus);
-    return () => window.removeEventListener('keydown', focus);
-  });
-
-  function searchCompany() {
+  const searchCompany = () => {
     const inputText = inputElement.current?.value;
 
     setIsLoading(true);
@@ -49,17 +34,7 @@ function SearchBar() {
       })
       .catch((error) => console.log(error))
       .finally(() => setIsLoading(false));
-  }
-
-  function onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (event.key === 'Enter' && event.nativeEvent.isComposing === false) {
-      event.preventDefault();
-
-      searchCompany();
-
-      event.currentTarget.value = '';
-    }
-  }
+  };
 
   return (
     <div
@@ -71,20 +46,7 @@ function SearchBar() {
         padding: '1.5rem',
       })}
     >
-      <input
-        ref={inputElement}
-        onKeyDown={onKeyDown}
-        css={css({
-          textAlign: 'center',
-          justifySelf: 'center',
-          fontSize: '2rem',
-          width: '70%',
-          maxWidth: 500,
-          height: '2rem',
-        })}
-        type="text"
-        placeholder={'기업을 검색하세요'}
-      />
+      <SearchInput inputElement={inputElement} searchCompany={searchCompany} />
       <SearchOptionContainer searchCompany={searchCompany} />
       <PaginationContainer />
     </div>
