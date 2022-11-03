@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { selectedGovernmentLocationAtoms, selectedSectorAtoms } from '../../../recoil/atoms';
+import { selectedGovernmentLocationAtoms, selectedSectorAtoms } from '../../../../recoil/atoms';
 import SearchOption from './SearchOption';
 
 type Props = {

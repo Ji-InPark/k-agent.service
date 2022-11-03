@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import PageButton from './PageButton';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { companyListAtoms, firstPageNumberInCurrentContainerSelector, lastPageNumberSelector, selectedPageNumberAtoms } from '../../../recoil/atoms';
+import { companyListAtoms, firstPageNumberInCurrentContainerSelector, lastPageNumberSelector, selectedPageNumberAtoms } from '../../../../recoil/atoms';
 import { useEffect, useState } from 'react';
 
 function PaginationContainer() {

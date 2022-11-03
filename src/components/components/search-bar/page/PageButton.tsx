@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
-import Colors from '../../../assets/colors';
+import Colors from '../../../../assets/colors';
 import { useRecoilValue } from 'recoil';
-import { selectedPageNumberAtoms } from '../../../recoil/atoms';
+import { selectedPageNumberAtoms } from '../../../../recoil/atoms';
 
 type Props = {
   text: string;
