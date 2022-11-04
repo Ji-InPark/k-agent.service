@@ -4,6 +4,8 @@ import { getRegExp } from 'korean-regexp';
 import search from '../../../../../axios';
 import { CompanyListType } from '../../../../../types';
 import AutoCompleteItem from './AutoCompleteItem';
+import { useSetRecoilState } from 'recoil';
+import { autocompleteCompanyListAtoms } from '../../../../../recoil/atoms';
 
 type Props = {
   searchText: string;
@@ -12,10 +14,13 @@ type Props = {
 function AutoCompleteContainer({ searchText }: Props) {
   const regex = getRegExp(searchText, { ignoreCase: false, initialSearch: true }).source;
   const [autoCompleteItems, setAutoCompleteItems] = useState<Array<JSX.Element>>();
+  const setAutoCompleteCompanyList = useSetRecoilState(autocompleteCompanyListAtoms);
 
   useEffect(() => {
     search.post<CompanyListType>('/search/autocomplete', { regex }).then((response) => {
-      const items = response.data.companies.map((it) => <AutoCompleteItem company={it} regex={regex} />);
+      setAutoCompleteCompanyList(response.data);
+
+      const items = response.data.companies.map((it, index) => <AutoCompleteItem company={it} index={index} />);
 
       setAutoCompleteItems(items);
     });
@@ -31,7 +36,8 @@ function AutoCompleteContainer({ searchText }: Props) {
         background: 'white',
         width: '70%',
         maxWidth: 500,
-        border: 'solid',
+        borderStyle: 'solid',
+        borderRadius: '0.1rem',
       })}
     >
       {autoCompleteItems}

@@ -1,7 +1,14 @@
 import { css } from '@emotion/react';
 import { useRef } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { companyListAtoms, isLoadingAtoms, selectedGovernmentLocationAtoms, selectedPageNumberAtoms, selectedSectorAtoms } from '../../../recoil/atoms';
+import {
+  autocompleteHoverIndexAtoms,
+  companyListAtoms,
+  isLoadingAtoms,
+  selectedGovernmentLocationAtoms,
+  selectedPageNumberAtoms,
+  selectedSectorAtoms,
+} from '../../../recoil/atoms';
 import { CompanyListType } from '../../../types';
 import search from '../../../axios';
 import SearchOptionContainer from './search-option/SearchOptionContainer';
@@ -15,9 +22,10 @@ function SearchBar() {
   const governmentLocation = useRecoilValue(selectedGovernmentLocationAtoms);
   const sector = useRecoilValue(selectedSectorAtoms);
   const setSelectedPageNumber = useSetRecoilState(selectedPageNumberAtoms);
+  const setHoverIndex = useSetRecoilState(autocompleteHoverIndexAtoms);
 
-  const searchCompany = () => {
-    const inputText = inputElement.current?.value;
+  const searchCompany = (searchText: string | undefined, useOption: boolean) => {
+    setHoverIndex(-1);
 
     setIsLoading(true);
 
@@ -25,9 +33,9 @@ function SearchBar() {
 
     search
       .post<CompanyListType>('/search', {
-        companyName: inputText,
-        governmentLocation: governmentLocation,
-        sector: sector,
+        companyName: searchText,
+        governmentLocation: useOption ? governmentLocation : '',
+        sector: useOption ? sector : '',
       })
       .then((response) => {
         setCompanyList(response.data);
@@ -47,7 +55,7 @@ function SearchBar() {
       })}
     >
       <SearchInput inputElement={inputElement} searchCompany={searchCompany} />
-      <SearchOptionContainer searchCompany={searchCompany} />
+      <SearchOptionContainer inputElement={inputElement} searchCompany={searchCompany} />
       <PaginationContainer />
     </div>
   );

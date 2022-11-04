@@ -43,3 +43,13 @@ export const isLoadingAtoms = atom<boolean>({
   key: 'isLoadingAtoms',
   default: false,
 });
+
+export const autocompleteHoverIndexAtoms = atom<number>({
+  key: 'autocompleteHoverIndexAtoms',
+  default: -1,
+});
+
+export const autocompleteCompanyListAtoms = atom<CompanyListType>({
+  key: 'autocompleteCompanyListAtoms',
+  default: { companies: [], companyCount: 0 },
+});
