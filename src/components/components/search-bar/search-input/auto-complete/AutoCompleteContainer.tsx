@@ -20,7 +20,7 @@ function AutoCompleteContainer({ searchText }: Props) {
     search.post<CompanyListType>('/search/autocomplete', { regex }).then((response) => {
       setAutoCompleteCompanyList(response.data);
 
-      const items = response.data.companies.map((it, index) => <AutoCompleteItem company={it} index={index} />);
+      const items = response.data.companies.map((it, index) => <AutoCompleteItem company={it} index={index} key={it.id} />);
 
       setAutoCompleteItems(items);
     });
