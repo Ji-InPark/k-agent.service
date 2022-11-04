@@ -1,14 +1,14 @@
 export type CompanyType = {
   id: number;
-  companyName: String;
-  companyLocation: String;
-  companyPhoneNumber: String;
-  companyFaxNumber: String;
-  companySector: String;
-  companyScale: String;
-  serviceType: String;
-  companyKeyword: String;
-  kreditJobKey: String;
+  companyName: string;
+  companyLocation: string;
+  companyPhoneNumber: string;
+  companyFaxNumber: string;
+  companySector: string;
+  companyScale: string;
+  serviceType: string;
+  companyKeyword: string;
+  kreditJobKey: string;
 };
 
 export type CompanyListType = {

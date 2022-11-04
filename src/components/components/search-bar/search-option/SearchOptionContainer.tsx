@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 import { css } from '@emotion/react';
-import { selectedGovernmentLocationAtoms, selectedSectorAtoms } from '../../../recoil/atoms';
+import { selectedGovernmentLocationAtoms, selectedSectorAtoms } from '../../../../recoil/atoms';
 import SearchOption from './SearchOption';
 
 type Props = {
-  searchCompany: () => void;
+  inputElement: RefObject<HTMLInputElement>;
+  searchCompany: (searchText: string | undefined, useOption: boolean) => void;
 };
 
-function SearchOptionContainer({ searchCompany }: Props) {
+function SearchOptionContainer({ inputElement, searchCompany }: Props) {
   return (
     <div
       css={css({
@@ -21,7 +22,13 @@ function SearchOptionContainer({ searchCompany }: Props) {
     >
       <SearchOption recoilVariable={selectedGovernmentLocationAtoms} apiUrl={'/government-locations'} defaultText={'전체 지역'} />
       <SearchOption recoilVariable={selectedSectorAtoms} apiUrl={'/sectors'} defaultText={'전체 업종'} />
-      <button onClick={searchCompany}>조회</button>
+      <button
+        onClick={() => {
+          searchCompany(inputElement.current?.value, true);
+        }}
+      >
+        조회
+      </button>
     </div>
   );
 }

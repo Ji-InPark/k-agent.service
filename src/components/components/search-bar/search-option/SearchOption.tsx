@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { RecoilState, useSetRecoilState } from 'recoil';
 import { css } from '@emotion/react';
-import search from '../../../axios';
-import '../../../utils/index';
+import search from '../../../../axios';
+import '../../../../utils';
 
 type Props = {
   recoilVariable: RecoilState<string>;
