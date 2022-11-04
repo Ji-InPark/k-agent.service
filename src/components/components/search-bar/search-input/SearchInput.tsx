@@ -40,6 +40,8 @@ function SearchInput({ inputElement, searchCompany }: Props) {
 
       event.currentTarget.value = text;
       setSearchText(text);
+
+      setHoverIndex(0);
     } else if (event.key === '/' && inputElement.current !== document.activeElement) {
       event.preventDefault();
 
