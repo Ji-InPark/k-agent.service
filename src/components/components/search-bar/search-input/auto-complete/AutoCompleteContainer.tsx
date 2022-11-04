@@ -26,7 +26,7 @@ function AutoCompleteContainer({ searchText }: Props) {
     });
   }, [searchText]);
 
-  if (autoCompleteItems?.length == 0) return <></>;
+  if (!autoCompleteItems?.length ?? 0 > 0) return <></>;
 
   return (
     <div
