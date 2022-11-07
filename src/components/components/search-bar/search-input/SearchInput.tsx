@@ -2,18 +2,25 @@ import React, { RefObject, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import AutoCompleteContainer from './auto-complete/AutoCompleteContainer';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { autocompleteCompanyListAtoms, autocompleteHoverIndexAtoms } from '../../../../recoil/atoms';
+import { autocompleteCompanyListAtoms, autocompleteHoverIndexAtoms, companyListAtoms } from '../../../../recoil/atoms';
+import SearchService from '../../../../service/SearchService';
 
 type Props = {
   inputElement: RefObject<HTMLInputElement>;
-  searchCompany: (searchText: string | undefined, useOption: boolean) => void;
 };
 
-function SearchInput({ inputElement, searchCompany }: Props) {
+function SearchInput({ inputElement }: Props) {
   const [searchText, setSearchText] = useState<string>('');
   const [isInputOnFocus, setIsInputOnFocus] = useState<boolean>(false);
   const [hoverIndex, setHoverIndex] = useRecoilState(autocompleteHoverIndexAtoms);
   const autoCompleteCompanyList = useRecoilValue(autocompleteCompanyListAtoms);
+  const companyList = useRecoilValue(companyListAtoms);
+  const searchCompany = SearchService();
+
+  useEffect(() => {
+    inputElement.current!.value = '';
+    setSearchText('');
+  }, [companyList]);
 
   useEffect(() => {
     return setHoverIndex(-1);
@@ -28,7 +35,7 @@ function SearchInput({ inputElement, searchCompany }: Props) {
       if (isHoverIndexValid) {
         searchCompany(autoCompleteCompanyList.companies[hoverIndex].companyName, false);
       } else {
-        searchCompany(inputElement.current?.value, true);
+        searchCompany(inputElement.current!.value, true);
       }
 
       event.currentTarget.value = '';
@@ -85,7 +92,7 @@ function SearchInput({ inputElement, searchCompany }: Props) {
         type="text"
         placeholder={'기업을 검색하세요'}
       />
-      {searchText && isInputOnFocus && <AutoCompleteContainer searchText={searchText} />}
+      {searchText && <AutoCompleteContainer searchText={searchText} />}
     </div>
   );
 }

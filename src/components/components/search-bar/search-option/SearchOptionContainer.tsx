@@ -2,13 +2,15 @@ import React, { RefObject } from 'react';
 import { css } from '@emotion/react';
 import { selectedGovernmentLocationAtoms, selectedSectorAtoms } from '../../../../recoil/atoms';
 import SearchOption from './SearchOption';
+import SearchService from '../../../../service/SearchService';
 
 type Props = {
   inputElement: RefObject<HTMLInputElement>;
-  searchCompany: (searchText: string | undefined, useOption: boolean) => void;
 };
 
-function SearchOptionContainer({ inputElement, searchCompany }: Props) {
+function SearchOptionContainer({ inputElement }: Props) {
+  const searchCompany = SearchService();
+
   return (
     <div
       css={css({
@@ -24,7 +26,7 @@ function SearchOptionContainer({ inputElement, searchCompany }: Props) {
       <SearchOption recoilVariable={selectedSectorAtoms} apiUrl={'/sectors'} defaultText={'전체 업종'} />
       <button
         onClick={() => {
-          searchCompany(inputElement.current?.value, true);
+          searchCompany(inputElement.current!.value, true);
         }}
       >
         조회
