@@ -54,7 +54,7 @@ function SearchInput({ inputElement, searchCompany }: Props) {
       event.preventDefault();
 
       if (hoverIndex >= 0) setHoverIndex((prev) => prev - 1);
-    } else if (event.key === 'ArrowDown') {
+    } else if (event.key === 'ArrowDown' && event.nativeEvent.isComposing == false) {
       event.preventDefault();
 
       setHoverIndex((prev) => (prev + 1) % autoCompleteCompanyList.companyCount);
