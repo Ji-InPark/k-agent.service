@@ -11,7 +11,6 @@ type Props = {
 
 function SearchInput({ inputElement }: Props) {
   const [searchText, setSearchText] = useState<string>('');
-  const [isInputOnFocus, setIsInputOnFocus] = useState<boolean>(false);
   const [hoverIndex, setHoverIndex] = useRecoilState(autocompleteHoverIndexAtoms);
   const autoCompleteCompanyList = useRecoilValue(autocompleteCompanyListAtoms);
   const companyList = useRecoilValue(companyListAtoms);
@@ -23,8 +22,8 @@ function SearchInput({ inputElement }: Props) {
   }, [companyList]);
 
   useEffect(() => {
-    return setHoverIndex(-1);
-  }, [isInputOnFocus]);
+    if (hoverIndex == -1) inputElement.current!.value = searchText;
+  }, [hoverIndex]);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const isHoverIndexValid = 0 <= hoverIndex && hoverIndex < autoCompleteCompanyList.companyCount;
@@ -40,15 +39,6 @@ function SearchInput({ inputElement }: Props) {
 
       event.currentTarget.value = '';
       setSearchText('');
-    } else if (event.key === 'Tab' && isHoverIndexValid) {
-      event.preventDefault();
-
-      const text = autoCompleteCompanyList.companies[hoverIndex].companyName;
-
-      event.currentTarget.value = text;
-      setSearchText(text);
-
-      setHoverIndex(0);
     } else if (event.key === '/' && inputElement.current !== document.activeElement) {
       event.preventDefault();
 
@@ -60,11 +50,21 @@ function SearchInput({ inputElement }: Props) {
     } else if (event.key === 'ArrowUp') {
       event.preventDefault();
 
-      if (hoverIndex >= 0) setHoverIndex((prev) => prev - 1);
+      const nextIndex = hoverIndex - 1;
+
+      if (hoverIndex >= 0) {
+        setHoverIndex(nextIndex);
+        inputElement.current!.value = autoCompleteCompanyList.companies[nextIndex].companyName;
+      }
     } else if (event.key === 'ArrowDown' && event.nativeEvent.isComposing == false) {
       event.preventDefault();
 
-      setHoverIndex((prev) => (prev + 1) % autoCompleteCompanyList.companyCount);
+      if (autoCompleteCompanyList.companyCount == 0) return;
+
+      const nextIndex = (hoverIndex + 1) % autoCompleteCompanyList.companyCount;
+
+      setHoverIndex(nextIndex);
+      inputElement.current!.value = autoCompleteCompanyList.companies[nextIndex].companyName;
     }
   };
 
@@ -79,8 +79,6 @@ function SearchInput({ inputElement }: Props) {
         ref={inputElement}
         onKeyDown={onKeyDown}
         onChange={(event) => setSearchText(event.target.value)}
-        onFocus={() => setIsInputOnFocus(true)}
-        onBlur={() => setIsInputOnFocus(false)}
         css={css({
           textAlign: 'center',
           justifySelf: 'center',
