@@ -5,7 +5,7 @@ import search from '../../../../../axios';
 import { CompanyListType } from '../../../../../types';
 import AutoCompleteItem from './AutoCompleteItem';
 import { useSetRecoilState } from 'recoil';
-import { autocompleteCompanyListAtoms } from '../../../../../recoil/atoms';
+import { autocompleteCompanyListAtoms, autocompleteHoverIndexAtoms } from '../../../../../recoil/atoms';
 
 type Props = {
   searchText: string;
@@ -15,6 +15,11 @@ function AutoCompleteContainer({ searchText }: Props) {
   const regex = getRegExp(searchText, { ignoreCase: false, initialSearch: true }).source;
   const [autoCompleteItems, setAutoCompleteItems] = useState<Array<JSX.Element>>();
   const setAutoCompleteCompanyList = useSetRecoilState(autocompleteCompanyListAtoms);
+  const setHoverIndex = useSetRecoilState(autocompleteHoverIndexAtoms);
+
+  useEffect(() => {
+    return setHoverIndex(-1);
+  }, []);
 
   useEffect(() => {
     search.post<CompanyListType>('/search/autocomplete', { regex }).then((response) => {
