@@ -32,7 +32,7 @@ function SearchInput({ inputElement }: Props) {
       event.preventDefault();
 
       if (isHoverIndexValid) {
-        searchCompany(autoCompleteCompanyList.companies[hoverIndex].companyName, false);
+        searchCompany(autoCompleteCompanyList.companies[hoverIndex], false);
       } else {
         searchCompany(inputElement.current!.value, true);
       }
@@ -54,7 +54,7 @@ function SearchInput({ inputElement }: Props) {
 
       if (hoverIndex >= 0) {
         setHoverIndex(nextIndex);
-        inputElement.current!.value = autoCompleteCompanyList.companies[nextIndex].companyName;
+        inputElement.current!.value = autoCompleteCompanyList.companies[nextIndex];
       }
     } else if (event.key === 'ArrowDown' && event.nativeEvent.isComposing == false) {
       event.preventDefault();
@@ -64,7 +64,7 @@ function SearchInput({ inputElement }: Props) {
       const nextIndex = (hoverIndex + 1) % autoCompleteCompanyList.companyCount;
 
       setHoverIndex(nextIndex);
-      inputElement.current!.value = autoCompleteCompanyList.companies[nextIndex].companyName;
+      inputElement.current!.value = autoCompleteCompanyList.companies[nextIndex];
     }
   };
 

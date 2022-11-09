@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import { getRegExp } from 'korean-regexp';
 import search from '../../../../../axios';
-import { CompanyListType } from '../../../../../types';
+import { AutoCompleteCompanyListType } from '../../../../../types';
 import AutoCompleteItem from './AutoCompleteItem';
 import { useSetRecoilState } from 'recoil';
 import { autocompleteCompanyListAtoms, autocompleteHoverIndexAtoms } from '../../../../../recoil/atoms';
@@ -22,10 +22,10 @@ function AutoCompleteContainer({ searchText }: Props) {
   }, []);
 
   useEffect(() => {
-    search.post<CompanyListType>('/search/autocomplete', { regex }).then((response) => {
+    search.post<AutoCompleteCompanyListType>('/search/autocomplete', { regex }).then((response) => {
       setAutoCompleteCompanyList(response.data);
 
-      const items = response.data.companies.map((it, index) => <AutoCompleteItem company={it} index={index} key={it.id} />);
+      const items = response.data.companies.map((it, index) => <AutoCompleteItem companyName={it} index={index} key={it} />);
 
       setAutoCompleteItems(items);
     });

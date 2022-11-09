@@ -1,23 +1,22 @@
 import React from 'react';
-import { CompanyType } from '../../../../../types';
 import { css } from '@emotion/react';
 import { useRecoilState } from 'recoil';
 import { autocompleteHoverIndexAtoms } from '../../../../../recoil/atoms';
 import SearchService from '../../../../../service/SearchService';
 
 type Props = {
-  company: CompanyType;
+  companyName: string;
   index: number;
 };
 
-function AutoCompleteItem({ company, index }: Props) {
+function AutoCompleteItem({ companyName, index }: Props) {
   const searchCompany = SearchService();
   const [hoverIndex, setHoverIndex] = useRecoilState(autocompleteHoverIndexAtoms);
 
   return (
     <div
       onMouseEnter={() => setHoverIndex(index)}
-      onClick={() => searchCompany(company.companyName, false)}
+      onClick={() => searchCompany(companyName, false)}
       css={css({
         padding: '0.5rem',
         background: hoverIndex == index ? '#EEEEEE' : 'white',
@@ -26,7 +25,7 @@ function AutoCompleteItem({ company, index }: Props) {
         },
       })}
     >
-      {company.companyName}
+      {companyName}
     </div>
   );
 }

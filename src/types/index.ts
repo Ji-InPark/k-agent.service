@@ -15,3 +15,8 @@ export type CompanyListType = {
   companies: Array<CompanyType>;
   companyCount: number;
 };
+
+export type AutoCompleteCompanyListType = {
+  companies: Array<string>;
+  companyCount: number;
+};
