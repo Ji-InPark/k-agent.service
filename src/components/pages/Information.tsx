@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import Header from '../components/Header';
+import InformationContainer from '../information-components/InformationContainer';
 
 function Information() {
   return (
@@ -10,6 +11,7 @@ function Information() {
       })}
     >
       <Header />
+      <InformationContainer />
     </div>
   );
 }
