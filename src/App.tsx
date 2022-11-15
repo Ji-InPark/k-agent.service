@@ -1,13 +1,18 @@
 import React from 'react';
 import Home from './components/pages/Home';
 import { RecoilRoot } from 'recoil';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Information from './components/pages/Information';
 
 function App() {
   return (
     <RecoilRoot>
-      <div className="App">
-        <Home></Home>
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path={'/'} element={<Home />} />
+          <Route path={'/information'} element={<Information />} />
+        </Routes>
+      </BrowserRouter>
     </RecoilRoot>
   );
 }

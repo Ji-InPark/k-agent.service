@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 // @ts-ignore
 import { ReactComponent as QuestionMark } from '../../assets/icon/QuestionMark.svg';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
@@ -13,11 +14,15 @@ function Header() {
           padding: '1rem',
         })}
       >
-        <span css={css({ '&:hover': { cursor: 'pointer' } })} onClick={() => window.location.reload()}>
-          <img css={css({ height: '2rem' })} src={require('../../assets/icon/title.png')} />
+        <span css={css({ '&:hover': { cursor: 'pointer' } })}>
+          <Link to={'/'}>
+            <img css={css({ height: '2rem' })} src={require('../../assets/icon/title.png')} />
+          </Link>
         </span>
-        <span css={css({ '&:hover': { cursor: 'pointer' } })} onClick={() => window.location.reload()}>
-          <QuestionMark width={'2rem'} height={'2rem'} />
+        <span css={css({ '&:hover': { cursor: 'pointer' } })}>
+          <Link to={'/information'}>
+            <QuestionMark width={'2rem'} height={'2rem'} />
+          </Link>
         </span>
       </div>
     </div>
