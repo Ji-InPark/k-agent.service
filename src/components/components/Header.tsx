@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
-// @ts-ignore
-import { ReactComponent as QuestionMark } from '../../assets/icon/QuestionMark.svg';
 import { Link } from 'react-router-dom';
+import QuestionMark from '../../assets/icon/QuestionMark';
 
 function Header() {
   return (
