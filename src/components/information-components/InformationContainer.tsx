@@ -7,6 +7,7 @@ function InformationContainer() {
     <div
       css={css({
         width: '40%',
+        minWidth: '25rem',
         marginLeft: 'auto',
         marginRight: 'auto',
         userSelect: 'none',
@@ -18,7 +19,7 @@ function InformationContainer() {
     >
       <h1>정보 출처</h1>
       <h3>
-        타 웹사이트 연동 이외 모든 정보는{' '}
+        타 웹사이트 연동 이외 모든 정보는
         <a
           css={css({
             '&:visited': {
@@ -71,7 +72,9 @@ function InformationContainer() {
 
       <h2>2022년 10월 02일</h2>
       <ul>
-        <UpdateInformationItem>네이버 지도, 원티드, 잡코리아, 로켓펀치, 잡플래닛 웹사이트 연동</UpdateInformationItem>
+        <UpdateInformationItem>네이버 지도 연동</UpdateInformationItem>
+        <UpdateInformationItem>채용 사이트(원티드, 잡코리아, 로켓펀치) 연동</UpdateInformationItem>
+        <UpdateInformationItem>회사 평점 사이트(잡플래닛, 크레딧잡) 연동</UpdateInformationItem>
         <UpdateInformationItem>웹사이트 연동 버튼 디자인 개선</UpdateInformationItem>
       </ul>
     </div>
