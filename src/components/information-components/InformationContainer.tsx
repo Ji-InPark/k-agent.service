@@ -19,7 +19,7 @@ function InformationContainer() {
     >
       <h1>정보 출처</h1>
       <h3>
-        타 웹사이트 연동 이외 모든 정보는
+        타 웹사이트 연동 이외 모든 정보는{' '}
         <a
           css={css({
             '&:visited': {
