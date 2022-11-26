@@ -1,21 +1,12 @@
 import { css } from '@emotion/react';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import SearchOptionContainer from './search-option/SearchOptionContainer';
 import PaginationContainer from './page/PaginationContainer';
 import SearchInput from './search-input/SearchInput';
 import RecentSearchContainer from './recent-search/RecentSearchContainer';
-import { useSetRecoilState } from 'recoil';
-import { recentSearchWordsAtoms } from '../../../recoil/atoms';
 
 function SearchBar() {
   const inputElement = useRef<HTMLInputElement>(null);
-  const setRecentSearchWords = useSetRecoilState(recentSearchWordsAtoms);
-
-  useEffect(() => {
-    const words: Array<string> = JSON.parse(localStorage.getItem('recentSearchWords') || '[]');
-
-    setRecentSearchWords(words);
-  }, []);
 
   return (
     <div
