@@ -9,7 +9,7 @@ import {
   selectedPageNumberAtoms,
   selectedSectorAtoms,
 } from '../recoil/atoms';
-import RecentSearchWordService from './RecentSearchWordService';
+import AddRecentSearchWordService from './AddRecentSearchWordService';
 
 function SearchService() {
   const setCompanyList = useSetRecoilState(companyListAtoms);
@@ -18,7 +18,7 @@ function SearchService() {
   const setHoverIndex = useSetRecoilState(autocompleteHoverIndexAtoms);
   const governmentLocation = useRecoilValue(selectedGovernmentLocationAtoms);
   const sector = useRecoilValue(selectedSectorAtoms);
-  const recentSearchWordService = RecentSearchWordService();
+  const recentSearchWordService = AddRecentSearchWordService();
 
   return function postSearch(searchText: string, useOption: boolean) {
     setHoverIndex(-1);

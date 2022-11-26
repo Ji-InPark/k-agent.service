@@ -1,7 +1,7 @@
 import { useRecoilState } from 'recoil';
 import { recentSearchWordsAtoms } from '../recoil/atoms';
 
-function RecentSearchWordService() {
+function AddRecentSearchWordService() {
   const [recentSearchWords, setRecentSearchWords] = useRecoilState(recentSearchWordsAtoms);
 
   return function (searchText: string) {
@@ -15,4 +15,4 @@ function RecentSearchWordService() {
   };
 }
 
-export default RecentSearchWordService;
+export default AddRecentSearchWordService;
