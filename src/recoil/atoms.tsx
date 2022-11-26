@@ -53,3 +53,8 @@ export const autocompleteCompanyListAtoms = atom<AutoCompleteCompanyListType>({
   key: 'autocompleteCompanyListAtoms',
   default: { companies: [], companyCount: 0 },
 });
+
+export const recentSearchWordsAtoms = atom<Array<string>>({
+  key: 'recentSearchWordsAtoms',
+  default: [],
+});
