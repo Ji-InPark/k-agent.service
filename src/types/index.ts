@@ -20,3 +20,8 @@ export type AutoCompleteCompanyListType = {
   companies: Array<string>;
   companyCount: number;
 };
+
+export enum RecentSearchWordEnum {
+  ADD,
+  DELETE,
+}

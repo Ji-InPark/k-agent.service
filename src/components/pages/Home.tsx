@@ -1,10 +1,10 @@
 import SearchBar from '../home-components/search-bar/SearchBar';
 import { css } from '@emotion/react';
-import Header from '../components/Header';
+import Header from '../common/Header';
 import CompanyList from '../home-components/company/CompanyList';
 import { useRecoilValue } from 'recoil';
 import { isLoadingAtoms } from '../../recoil/atoms';
-import LoadingModal from '../components/modal/LoadingModal';
+import LoadingModal from '../common/modal/LoadingModal';
 
 function Home() {
   const isLoading = useRecoilValue(isLoadingAtoms);

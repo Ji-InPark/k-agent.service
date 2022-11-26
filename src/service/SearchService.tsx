@@ -1,5 +1,5 @@
 import search from '../axios';
-import { CompanyListType } from '../types';
+import { CompanyListType, RecentSearchWordEnum } from '../types';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   autocompleteHoverIndexAtoms,
@@ -9,6 +9,7 @@ import {
   selectedPageNumberAtoms,
   selectedSectorAtoms,
 } from '../recoil/atoms';
+import RecentSearchWordService from './RecentSearchWordService';
 
 function SearchService() {
   const setCompanyList = useSetRecoilState(companyListAtoms);
@@ -17,6 +18,7 @@ function SearchService() {
   const setHoverIndex = useSetRecoilState(autocompleteHoverIndexAtoms);
   const governmentLocation = useRecoilValue(selectedGovernmentLocationAtoms);
   const sector = useRecoilValue(selectedSectorAtoms);
+  const addRecentSearchWordService = RecentSearchWordService()(RecentSearchWordEnum.ADD);
 
   return function postSearch(searchText: string, useOption: boolean) {
     setHoverIndex(-1);
@@ -24,6 +26,8 @@ function SearchService() {
     setIsLoading(true);
 
     setSelectedPageNumber(0);
+
+    addRecentSearchWordService(searchText);
 
     search
       .post<CompanyListType>('/search', {
