@@ -30,9 +30,8 @@ function RecentSearchWord({ word }: Props) {
       <span
         css={css({
           maxWidth: '5rem',
-          textOverflow: 'ellipsis',
           whiteSpace: 'nowrap',
-          overflow: 'hidden',
+          overflow: 'auto',
           marginRight: '1rem',
         })}
         onClick={() => searchService(word, false)}
