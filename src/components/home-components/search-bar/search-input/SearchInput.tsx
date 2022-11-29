@@ -89,6 +89,7 @@ function SearchInput({ inputElement }: Props) {
         })}
         type="text"
         placeholder={'기업을 검색하세요'}
+        enterKeyHint={'enter'}
       />
       {searchText && <AutoCompleteContainer searchText={searchText} />}
     </div>

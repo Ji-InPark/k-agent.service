@@ -44,6 +44,11 @@ function InformationContainer() {
       <br />
 
       <h1>K-Agent 업데이트 내용</h1>
+      <h2>2022년 11월 26일</h2>
+      <ul>
+        <UpdateInformationItem>최근 검색 기록 기능 추가</UpdateInformationItem>
+      </ul>
+
       <h2>2022년 11월 04일</h2>
       <ul>
         <UpdateInformationItem>검색 자동완성 기능 추가</UpdateInformationItem>
