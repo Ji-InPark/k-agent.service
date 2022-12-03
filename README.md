@@ -1,7 +1,5 @@
 # K-Agent (병역특례 업체 조회 웹사이트) 
 
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fk-agent.services&count_bg=%23000000&title_bg=%23000000&icon=&icon_color=%23000000&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
-
 채용 사이트에서 병역특례 가능 업체이긴한데 복무형태가 나와있지 않아서 불편했던 적 있으신가요?
 
 해당 회사와 관련된 링크들을 모아줬으면 하는 경우가 많지 않았나요?
