@@ -12,6 +12,8 @@ function RecentSearchWordService() {
   };
 
   const addRecentSearchWord = (searchText: string) => {
+    if (searchText === '') return;
+
     const words = [searchText, ...recentSearchWords.filter((it) => it !== searchText)];
 
     if (words.length > 3) words.pop();
