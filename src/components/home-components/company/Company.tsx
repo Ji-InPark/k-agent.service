@@ -102,7 +102,7 @@ function Company({ company }: Props) {
           <CompanyButton
             buttonBackgroundColor={Colors.LIGHTVIOLET}
             buttonOnClickUrl={'https://www.jobkorea.co.kr/Search/?stext=' + company.companyKeyword + '&tabType=corp&Page_No=1'}
-            buttonImageUrl={'http://company.jobkorea.co.kr/img/common/jk_logo.png'}
+            buttonImageUrl={'https://i.jobkorea.kr/content/images/ver_1/gnb/jk_logo.png?20220926'}
             imageAlt={'잡코리아'}
             imageWidth={'60%'}
             imageHeight={undefined}
