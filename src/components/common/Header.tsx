@@ -4,7 +4,7 @@ import QuestionMark from '../../assets/icon/QuestionMark';
 
 function Header() {
   return (
-    <div css={css({ background: '#777D71', minHeight: '4rem' })}>
+    <div css={css({ background: '#777D71', maxHeight: '4rem' })}>
       <div
         css={css({
           display: 'flex',

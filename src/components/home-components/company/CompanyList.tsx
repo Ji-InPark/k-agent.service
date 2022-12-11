@@ -31,7 +31,7 @@ function CompanyList() {
       ref={resultView}
       css={css({
         width: '100vw',
-        maxHeight: 'calc(100vh - 19rem - 25px)',
+        maxHeight: 'calc(100vh - 18rem - 25px)',
         overflow: 'auto',
         '&::-webkit-scrollbar': {
           display: 'none',
