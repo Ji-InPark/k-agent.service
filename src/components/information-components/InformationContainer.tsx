@@ -38,7 +38,8 @@ function InformationContainer() {
 
       <h1>정보 업데이트 이력</h1>
       <ul>
-        <UpdateInformationItem>2022년 10월 26일 (현재 적용)</UpdateInformationItem>
+        <UpdateInformationItem>2022년 12월 30일 (현재 적용)</UpdateInformationItem>
+        <UpdateInformationItem>2022년 10월 26일</UpdateInformationItem>
       </ul>
 
       <br />
