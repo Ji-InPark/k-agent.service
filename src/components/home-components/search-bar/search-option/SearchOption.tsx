@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { RecoilState, useSetRecoilState } from 'recoil';
 import { css } from '@emotion/react';
 import search from '../../../../axios';
-import '../../../../utils';
 
 type Props = {
   recoilVariable: RecoilState<string>;
@@ -22,7 +21,7 @@ function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
     setSelectedString(cachedItem ?? '');
   }, []);
 
-  if (strings.isEmpty()) return <select></select>;
+  if (!strings.length) return <select></select>;
 
   return (
     <select

@@ -5,9 +5,9 @@ type Props = {
   buttonOnClickUrl: string;
   buttonImageUrl: string;
   imageAlt: string;
-  imageWidth: string | undefined;
-  imageHeight: string | undefined;
-  buttonText: string | undefined;
+  imageWidth?: string;
+  imageHeight?: string;
+  buttonText?: string;
 };
 
 function CompanyButton({ buttonBackgroundColor, buttonOnClickUrl, buttonImageUrl, imageAlt, imageWidth = '100%', imageHeight = '100%', buttonText }: Props) {
@@ -28,7 +28,7 @@ function CompanyButton({ buttonBackgroundColor, buttonOnClickUrl, buttonImageUrl
         width: '100%',
         transition: '0.2s',
         '&:hover': {
-          translate: '0% -15%',
+          transform: 'scale(1.04)',
         },
       })}
       onClick={() => window.open(buttonOnClickUrl, '_blank')}

@@ -16,7 +16,7 @@ function AutoCompleteItem({ companyName, index }: Props) {
   return (
     <div
       onMouseEnter={() => setHoverIndex(index)}
-      onClick={() => searchCompany(companyName, false)}
+      onClick={() => searchCompany({ searchText: companyName })}
       css={css({
         padding: '0.5rem',
         background: hoverIndex == index ? '#EEEEEE' : 'white',

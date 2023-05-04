@@ -1,13 +1,13 @@
-import { CompanyType } from '../../../types';
+import { Company } from '../../../types';
 import { css } from '@emotion/react';
 import Colors from '../../../assets/colors';
 import CompanyButton from './button/CompanyButton';
 
 type Props = {
-  company: CompanyType;
+  company: Company;
 };
 
-function Company({ company }: Props) {
+function CompanyCard({ company }: Props) {
   return (
     <div
       css={css({
@@ -82,7 +82,6 @@ function Company({ company }: Props) {
             buttonOnClickUrl={'https://map.naver.com/v5/search/' + company.companyLocation}
             buttonImageUrl={'https://mir-s3-cdn-cf.behance.net/user/276/a78c6531673609.5703570bc812f.png'}
             imageAlt={'네이버'}
-            imageWidth={undefined}
             imageHeight={'80%'}
             buttonText={'네이버 지도'}
           />
@@ -94,8 +93,6 @@ function Company({ company }: Props) {
             buttonImageUrl={'https://theme.zdassets.com/theme_assets/9309779/4f2fb72a20c8e2ee37a305ef38ef1d144774a8df.png'}
             imageAlt={'원티드'}
             imageWidth={'60%'}
-            imageHeight={undefined}
-            buttonText={undefined}
           />
         </div>
         <div>
@@ -105,8 +102,6 @@ function Company({ company }: Props) {
             buttonImageUrl={'https://i.jobkorea.kr/content/images/ver_1/gnb/jk_logo.png?20220926'}
             imageAlt={'잡코리아'}
             imageWidth={'60%'}
-            imageHeight={undefined}
-            buttonText={undefined}
           />
         </div>
         <div>
@@ -116,8 +111,6 @@ function Company({ company }: Props) {
             buttonImageUrl={'https://www.venturesquare.net/wp-content/uploads/2018/04/rocketpunch-logo-horizontal.png'}
             imageAlt={'로켓펀치'}
             imageWidth={'60%'}
-            imageHeight={undefined}
-            buttonText={undefined}
           />
         </div>
         <div>
@@ -127,8 +120,6 @@ function Company({ company }: Props) {
             buttonImageUrl={'https://jpassets.jobplanet.co.kr/production/uploads/material/media/2746/img_logo_jp_200217.png'}
             imageAlt={'잡플래닛'}
             imageWidth={'60%'}
-            imageHeight={undefined}
-            buttonText={undefined}
           />
         </div>
         <div
@@ -141,9 +132,7 @@ function Company({ company }: Props) {
             buttonOnClickUrl={'https://kreditjob.com/company/' + company.kreditJobKey}
             buttonImageUrl={'https://image.wanted.co.kr/kreditjob/www/logo-kreditjob@2x.png'}
             imageAlt={'크레딧잡'}
-            imageWidth={undefined}
             imageHeight={'80%'}
-            buttonText={undefined}
           />
         </div>
       </div>
@@ -151,4 +140,4 @@ function Company({ company }: Props) {
   );
 }
 
-export default Company;
+export default CompanyCard;

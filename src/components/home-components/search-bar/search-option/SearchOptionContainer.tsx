@@ -26,7 +26,7 @@ function SearchOptionContainer({ inputElement }: Props) {
       <SearchOption recoilVariable={selectedSectorAtoms} apiUrl={'/sectors'} defaultText={'전체 업종'} />
       <button
         onClick={() => {
-          searchCompany(inputElement.current!.value, true);
+          searchCompany({ searchText: inputElement.current!.value, useOption: true });
         }}
       >
         조회

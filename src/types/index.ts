@@ -1,4 +1,4 @@
-export type CompanyType = {
+export type Company = {
   id: number;
   companyName: string;
   companyLocation: string;
@@ -11,12 +11,12 @@ export type CompanyType = {
   kreditJobKey: string;
 };
 
-export type CompanyListType = {
-  companies: Array<CompanyType>;
+export type CompanyList = {
+  companies: Array<Company>;
   companyCount: number;
 };
 
-export type AutoCompleteCompanyListType = {
+export type AutoCompleteCompanyList = {
   companies: Array<string>;
   companyCount: number;
 };

@@ -7,7 +7,7 @@ import RecentSearchWord from './RecentSearchWord';
 function RecentSearchContainer() {
   const recentSearchWords = useRecoilValue(recentSearchWordsAtoms);
 
-  if (recentSearchWords.isEmpty())
+  if (!recentSearchWords.length)
     return (
       <div
         css={css({

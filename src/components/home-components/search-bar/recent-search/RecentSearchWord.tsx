@@ -10,7 +10,7 @@ type Props = {
 };
 
 function RecentSearchWord({ word }: Props) {
-  const deleteRecentSearchWordService = RecentSearchWordService()(RecentSearchWordEnum.DELETE);
+  const deleteRecentSearchWordService = RecentSearchWordService(RecentSearchWordEnum.DELETE);
   const searchService = SearchService();
 
   return (
@@ -34,7 +34,7 @@ function RecentSearchWord({ word }: Props) {
           overflow: 'auto',
           marginRight: '1rem',
         })}
-        onClick={() => searchService(word, false)}
+        onClick={() => searchService({ searchText: word })}
       >
         {word}
       </span>
