@@ -12,7 +12,7 @@ function RecentSearchWordService(method: RecentSearchWordEnum) {
   };
 
   const addRecentSearchWord = (searchText: string) => {
-    if (searchText === '') return;
+    if (!searchText) return;
 
     const words = [searchText, ...recentSearchWords.filter((it) => it !== searchText)];
 
