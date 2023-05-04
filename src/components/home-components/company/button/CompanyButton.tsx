@@ -28,7 +28,7 @@ function CompanyButton({ buttonBackgroundColor, buttonOnClickUrl, buttonImageUrl
         width: '100%',
         transition: '0.2s',
         '&:hover': {
-          translate: '0% -15%',
+          transform: 'scale(1.04)',
         },
       })}
       onClick={() => window.open(buttonOnClickUrl, '_blank')}
