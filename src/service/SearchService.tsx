@@ -1,5 +1,5 @@
 import search from '../axios';
-import { CompanyListType, RecentSearchWordEnum } from '../types';
+import { CompanyList, RecentSearchWordEnum } from '../types';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   autocompleteHoverIndexAtoms,
@@ -30,7 +30,7 @@ function SearchService() {
     addRecentSearchWordService(searchText);
 
     search
-      .post<CompanyListType>('/search', {
+      .post<CompanyList>('/search', {
         companyName: searchText,
         governmentLocation: useOption ? governmentLocation : '',
         sector: useOption ? sector : '',

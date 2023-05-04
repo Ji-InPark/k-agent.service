@@ -1,13 +1,13 @@
-import { CompanyType } from '../../../types';
+import { Company } from '../../../types';
 import { css } from '@emotion/react';
 import Colors from '../../../assets/colors';
 import CompanyButton from './button/CompanyButton';
 
 type Props = {
-  company: CompanyType;
+  company: Company;
 };
 
-function Company({ company }: Props) {
+function CompanyCard({ company }: Props) {
   return (
     <div
       css={css({
@@ -140,4 +140,4 @@ function Company({ company }: Props) {
   );
 }
 
-export default Company;
+export default CompanyCard;

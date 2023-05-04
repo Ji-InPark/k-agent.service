@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil';
 import { companyListAtoms, selectedPageNumberAtoms } from '../../../recoil/atoms';
-import Company from './Company';
 import { useEffect, useRef, useState } from 'react';
 import { css } from '@emotion/react';
+import CompanyCard from './CompanyCard';
 
 function CompanyList() {
   const companyList = useRecoilValue(companyListAtoms).companies;
@@ -18,7 +18,7 @@ function CompanyList() {
 
     for (let i = 0; i < Math.min(companyCount - selectedPageNumber * 20, 20); i++) {
       const company = companyList[selectedPageNumber * 20 + i];
-      result.push(<Company key={company.id} company={company} />);
+      result.push(<CompanyCard key={company.id} company={company} />);
     }
 
     resultView.current?.scroll(0, 0);

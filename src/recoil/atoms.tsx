@@ -1,7 +1,7 @@
 import { atom, selector } from 'recoil';
-import { AutoCompleteCompanyListType, CompanyListType } from '../types';
+import { AutoCompleteCompanyList, CompanyList } from '../types';
 
-export const companyListAtoms = atom<CompanyListType>({
+export const companyListAtoms = atom<CompanyList>({
   key: 'companyListAtoms',
   default: { companies: [], companyCount: 0 },
 });
@@ -49,7 +49,7 @@ export const autocompleteHoverIndexAtoms = atom<number>({
   default: -1,
 });
 
-export const autocompleteCompanyListAtoms = atom<AutoCompleteCompanyListType>({
+export const autocompleteCompanyListAtoms = atom<AutoCompleteCompanyList>({
   key: 'autocompleteCompanyListAtoms',
   default: { companies: [], companyCount: 0 },
 });
