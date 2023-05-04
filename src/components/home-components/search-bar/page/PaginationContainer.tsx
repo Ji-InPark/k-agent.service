@@ -39,9 +39,7 @@ function PaginationContainer() {
       <PageButton
         text="<"
         onClick={() => {
-          if (firstPageNumberInCurrentContainer - 10 < 0) return;
-
-          setSelectedPageNumber(firstPageNumberInCurrentContainer - 10);
+          setSelectedPageNumber(Math.max(firstPageNumberInCurrentContainer - 10, 0));
         }}
       />
       {currentPageNumbers.map((it) => {
@@ -58,9 +56,7 @@ function PaginationContainer() {
       <PageButton
         text=">"
         onClick={() => {
-          if (firstPageNumberInCurrentContainer + 10 > lastPageNumber) return;
-
-          setSelectedPageNumber(firstPageNumberInCurrentContainer + 10);
+          setSelectedPageNumber(Math.min(firstPageNumberInCurrentContainer + 10, lastPageNumber - 1));
         }}
       />
       <PageButton
