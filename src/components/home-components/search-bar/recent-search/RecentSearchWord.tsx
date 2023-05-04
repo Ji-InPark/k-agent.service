@@ -34,7 +34,7 @@ function RecentSearchWord({ word }: Props) {
           overflow: 'auto',
           marginRight: '1rem',
         })}
-        onClick={() => searchService(word, false)}
+        onClick={() => searchService({ searchText: word, useOption: false })}
       >
         {word}
       </span>

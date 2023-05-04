@@ -11,6 +11,11 @@ import {
 } from '../recoil/atoms';
 import RecentSearchWordService from './RecentSearchWordService';
 
+interface NamedParameter {
+  searchText: string;
+  useOption: boolean;
+}
+
 function SearchService() {
   const setCompanyList = useSetRecoilState(companyListAtoms);
   const setIsLoading = useSetRecoilState(isLoadingAtoms);
@@ -20,7 +25,7 @@ function SearchService() {
   const sector = useRecoilValue(selectedSectorAtoms);
   const addRecentSearchWordService = RecentSearchWordService()(RecentSearchWordEnum.ADD);
 
-  return function postSearch(searchText: string, useOption: boolean) {
+  return function postSearch({ searchText, useOption }: NamedParameter) {
     setHoverIndex(-1);
 
     setIsLoading(true);

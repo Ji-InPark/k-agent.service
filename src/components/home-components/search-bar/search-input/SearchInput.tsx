@@ -31,11 +31,10 @@ function SearchInput({ inputElement }: Props) {
     if (event.key === 'Enter' && event.nativeEvent.isComposing === false) {
       event.preventDefault();
 
-      if (isHoverIndexValid) {
-        searchCompany(autoCompleteCompanyList.companies[hoverIndex], false);
-      } else {
-        searchCompany(inputElement.current!.value, true);
-      }
+      const inputText = isHoverIndexValid ? autoCompleteCompanyList.companies[hoverIndex] : inputElement.current!.value;
+      const useOption = !isHoverIndexValid;
+
+      searchCompany({ searchText: inputText, useOption });
 
       event.currentTarget.value = '';
       setSearchText('');
