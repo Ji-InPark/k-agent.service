@@ -26,11 +26,10 @@ function SearchInput({ inputElement }: Props) {
   }, [hoverIndex]);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    const isHoverIndexValid = 0 <= hoverIndex && hoverIndex < autoCompleteCompanyList.companyCount;
-
-    if (event.key === 'Enter' && event.nativeEvent.isComposing === false) {
+    if (event.key === 'Enter' && !event.nativeEvent.isComposing) {
       event.preventDefault();
 
+      const isHoverIndexValid = 0 <= hoverIndex && hoverIndex < autoCompleteCompanyList.companyCount;
       const inputText = isHoverIndexValid ? autoCompleteCompanyList.companies[hoverIndex] : inputElement.current!.value;
       const useOption = !isHoverIndexValid;
 
@@ -38,10 +37,6 @@ function SearchInput({ inputElement }: Props) {
 
       event.currentTarget.value = '';
       setSearchText('');
-    } else if (event.key === '/' && inputElement.current !== document.activeElement) {
-      event.preventDefault();
-
-      inputElement.current?.focus();
     } else if (event.key === 'Escape') {
       event.preventDefault();
 
@@ -55,7 +50,7 @@ function SearchInput({ inputElement }: Props) {
         setHoverIndex(nextIndex);
         inputElement.current!.value = autoCompleteCompanyList.companies[nextIndex];
       }
-    } else if (event.key === 'ArrowDown' && event.nativeEvent.isComposing == false) {
+    } else if (event.key === 'ArrowDown' && !event.nativeEvent.isComposing) {
       event.preventDefault();
 
       if (autoCompleteCompanyList.companyCount == 0) return;
