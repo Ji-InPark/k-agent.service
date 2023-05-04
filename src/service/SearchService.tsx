@@ -23,7 +23,7 @@ function SearchService() {
   const setHoverIndex = useSetRecoilState(autocompleteHoverIndexAtoms);
   const governmentLocation = useRecoilValue(selectedGovernmentLocationAtoms);
   const sector = useRecoilValue(selectedSectorAtoms);
-  const addRecentSearchWordService = RecentSearchWordService()(RecentSearchWordEnum.ADD);
+  const addRecentSearchWordService = RecentSearchWordService(RecentSearchWordEnum.ADD);
 
   return function postSearch({ searchText, useOption = false }: NamedParameter) {
     setHoverIndex(-1);

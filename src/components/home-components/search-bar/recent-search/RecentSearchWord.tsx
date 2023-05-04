@@ -10,7 +10,7 @@ type Props = {
 };
 
 function RecentSearchWord({ word }: Props) {
-  const deleteRecentSearchWordService = RecentSearchWordService()(RecentSearchWordEnum.DELETE);
+  const deleteRecentSearchWordService = RecentSearchWordService(RecentSearchWordEnum.DELETE);
   const searchService = SearchService();
 
   return (

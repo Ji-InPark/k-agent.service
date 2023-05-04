@@ -2,7 +2,7 @@ import { useRecoilState } from 'recoil';
 import { recentSearchWordsAtoms } from '../recoil/atoms';
 import { RecentSearchWordEnum } from '../types';
 
-function RecentSearchWordService() {
+function RecentSearchWordService(method: RecentSearchWordEnum) {
   const [recentSearchWords, setRecentSearchWords] = useRecoilState(recentSearchWordsAtoms);
 
   const deleteRecentSearchWord = (searchWord: string) => {
@@ -21,10 +21,7 @@ function RecentSearchWordService() {
     setRecentSearchWords(words);
   };
 
-  return (type: RecentSearchWordEnum) => {
-    if (type == RecentSearchWordEnum.ADD) return addRecentSearchWord;
-    else return deleteRecentSearchWord;
-  };
+  return method == RecentSearchWordEnum.DELETE ? deleteRecentSearchWord : addRecentSearchWord;
 }
 
 export default RecentSearchWordService;
