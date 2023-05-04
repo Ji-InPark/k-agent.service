@@ -13,7 +13,7 @@ import RecentSearchWordService from './RecentSearchWordService';
 
 interface NamedParameter {
   searchText: string;
-  useOption: boolean;
+  useOption?: boolean;
 }
 
 function SearchService() {
@@ -25,7 +25,7 @@ function SearchService() {
   const sector = useRecoilValue(selectedSectorAtoms);
   const addRecentSearchWordService = RecentSearchWordService()(RecentSearchWordEnum.ADD);
 
-  return function postSearch({ searchText, useOption }: NamedParameter) {
+  return function postSearch({ searchText, useOption = false }: NamedParameter) {
     setHoverIndex(-1);
 
     setIsLoading(true);
