@@ -8,7 +8,6 @@ import Admin from './components/pages/Admin';
 
 ReactGA.initialize('G-J27DMM5J0W');
 function App() {
-  alert('서버 점검 중입니다. \n최대한 빠르게 서비스 할 수 있도록 노력하겠습니다. 감사합니다.');
   ReactGA.send({ hitType: 'pageview', page: '/' });
 
   return (
