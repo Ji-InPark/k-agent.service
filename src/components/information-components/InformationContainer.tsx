@@ -44,7 +44,8 @@ function InformationContainer() {
 
       <h1>정보 업데이트 이력</h1>
       <ul>
-        <UpdateInformationItem>2023년 05월 29일 (현재 적용)</UpdateInformationItem>
+        <UpdateInformationItem>2023년 07월 09일 (현재 적용)</UpdateInformationItem>
+        <UpdateInformationItem>2023년 05월 29일</UpdateInformationItem>
         <UpdateInformationItem>2022년 12월 30일</UpdateInformationItem>
         <UpdateInformationItem>2022년 10월 26일</UpdateInformationItem>
       </ul>
@@ -52,6 +53,11 @@ function InformationContainer() {
       <br />
 
       <h1>K-Agent 업데이트 내용</h1>
+      <h2>2023년 07월 09일</h2>
+      <ul>
+        <UpdateInformationItem>빠른 정보 업데이트를 위한 서비스 구조 개편</UpdateInformationItem>
+      </ul>
+
       <h2>2022년 11월 26일</h2>
       <ul>
         <UpdateInformationItem>최근 검색 기록 기능 추가</UpdateInformationItem>
