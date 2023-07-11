@@ -37,8 +37,8 @@ function SearchService() {
     search
       .post<CompanyList>('/search', {
         companyName: searchText,
-        governmentLocation: useOption ? governmentLocation : '',
-        sector: useOption ? sector : '',
+        governmentLocation: useOption ? governmentLocation : null,
+        sector: useOption ? sector : null,
       })
       .then((response) => setCompanyList(response.data))
       .catch((error) => console.log(error))
