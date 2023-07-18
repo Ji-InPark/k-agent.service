@@ -5,27 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e9368f0-323a-4656-bbce-9c2ae5876173" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/axios/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/axios/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/modal/LoadingModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/modal/LoadingModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home-components/search-bar/SearchBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home-components/search-bar/SearchBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home-components/search-bar/recent-search/RecentSearchContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home-components/search-bar/recent-search/RecentSearchContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home-components/search-bar/recent-search/RecentSearchWord.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home-components/search-bar/recent-search/RecentSearchWord.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home-components/search-bar/search-input/SearchInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home-components/search-bar/SearchInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home-components/search-bar/search-input/auto-complete/AutoCompleteContainer.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home-components/search-bar/search-input/auto-complete/AutoCompleteItem.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/home-components/search-bar/search-option/SearchOption.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home-components/search-bar/search-option/SearchOption.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home-components/search-bar/search-option/SearchOptionContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home-components/search-bar/search-option/SearchOptionContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +97,7 @@
       <workItem from="1689300493437" duration="2912000" />
       <workItem from="1689555585557" duration="2636000" />
       <workItem from="1689641353731" duration="527000" />
-      <workItem from="1689656769141" duration="4090000" />
+      <workItem from="1689656769141" duration="4421000" />
     </task>
     <servers />
   </component>

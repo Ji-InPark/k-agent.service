@@ -6,7 +6,6 @@ import styled from '@emotion/styled';
 
 const Select = styled(AntdSelect)`
   width: 100%;
-  min-width: 500px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
