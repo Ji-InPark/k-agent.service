@@ -1,7 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { RecoilState, useSetRecoilState } from 'recoil';
-import { css } from '@emotion/react';
+import { Select as AntdSelect } from 'antd';
 import search from '../../../../axios';
+import styled from '@emotion/styled';
+
+const Select = styled(AntdSelect)`
+  width: 100%;
+  min-width: 500px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+`;
 
 type Props = {
   recoilVariable: RecoilState<string>;
@@ -14,6 +23,26 @@ function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
   const setSelectedString = useSetRecoilState(recoilVariable);
   const cachedItem = localStorage.getItem(defaultText);
 
+  const options = useMemo(() => {
+    if (!strings) {
+      return;
+    }
+
+    return [{ value: defaultText, label: defaultText }, ...strings.map((value) => ({ value, label: value }))];
+  }, [strings, defaultText]);
+
+  const onChange = useCallback(
+    (selectedValue: string) => {
+      if (!selectedValue) {
+        return;
+      }
+
+      setSelectedString(selectedValue);
+      localStorage.setItem(defaultText, selectedValue);
+    },
+    [defaultText],
+  );
+
   useEffect(() => {
     search.get<Array<string>>(apiUrl).then((response) => {
       setStrings(response.data);
@@ -21,39 +50,11 @@ function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
     setSelectedString(cachedItem ?? '');
   }, []);
 
-  if (!strings.length) return <select></select>;
+  if (!strings.length) {
+    return <></>;
+  }
 
-  return (
-    <select
-      css={css({
-        width: '100%',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-      })}
-      onChange={(e) => {
-        setSelectedString(e.target.value);
-        localStorage.setItem(defaultText, e.target.value);
-      }}
-      value={cachedItem ?? ''}
-    >
-      <option
-        css={css({
-          textAlign: 'center',
-        })}
-        value=""
-      >
-        {defaultText}
-      </option>
-      {strings.map((str) => {
-        return (
-          <option css={css({ textAlign: 'center' })} key={str} value={str}>
-            {str}
-          </option>
-        );
-      })}
-    </select>
-  );
+  return <Select defaultValue={defaultText} options={options} onChange={(value) => onChange(value as string)} />;
 }
 
 export default SearchOption;

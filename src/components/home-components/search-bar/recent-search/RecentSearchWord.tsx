@@ -1,56 +1,55 @@
 import React from 'react';
-import { css } from '@emotion/react';
 import X from '../../../../assets/icon/XIcon';
 import RecentSearchWordService from '../../../../service/RecentSearchWordService';
 import { RecentSearchWordEnum } from '../../../../types';
 import SearchService from '../../../../service/SearchService';
+import styled from '@emotion/styled';
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  border-style: solid;
+  border-radius: 1rem;
+  padding: 0.3rem 0.5rem;
+  margin-right: 0.5rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const Text = styled.span`
+  white-space: nowrap;
+  overflow: auto;
+  margin-right: 1rem;
+`;
+
+const Icon = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2px;
+  color: gray;
+
+  &:hover {
+    color: #000;
+  }
+`;
 
 type Props = {
   word: string;
 };
 
-function RecentSearchWord({ word }: Props) {
+export default function RecentSearchWord({ word }: Props) {
   const deleteRecentSearchWordService = RecentSearchWordService(RecentSearchWordEnum.DELETE);
   const searchService = SearchService();
 
   return (
-    <div
-      css={css({
-        display: 'flex',
-        alignItems: 'center',
-        borderStyle: 'solid',
-        borderRadius: '1rem',
-        padding: '0.3rem 0.5rem',
-        marginRight: '0.5rem',
-        '&:hover': {
-          cursor: 'pointer',
-        },
-      })}
-    >
-      <span
-        css={css({
-          maxWidth: '5rem',
-          whiteSpace: 'nowrap',
-          overflow: 'auto',
-          marginRight: '1rem',
-        })}
-        onClick={() => searchService({ searchText: word })}
-      >
-        {word}
-      </span>
-      <span
-        css={css({
-          color: 'gray',
-          '&:hover': {
-            color: 'black',
-          },
-        })}
-        onClick={() => deleteRecentSearchWordService(word)}
-      >
-        <X width={'1.2rem'} height={'1.2rem'} />
-      </span>
-    </div>
+    <Container>
+      <Text onClick={() => searchService({ searchText: word })}>{word}</Text>
+      <Icon onClick={() => deleteRecentSearchWordService(word)}>
+        <X width="1.2rem" height="1.2rem" />
+      </Icon>
+    </Container>
   );
 }
-
-export default RecentSearchWord;
