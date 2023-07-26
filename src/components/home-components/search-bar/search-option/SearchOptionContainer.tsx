@@ -28,7 +28,7 @@ function SearchOptionContainer({ searchText }: Props) {
   const searchCompany = SearchService();
 
   const onSearch = useCallback(() => {
-    if (!searchText || searchText === '' || !searchCompany) {
+    if (!searchCompany) {
       return;
     }
 
