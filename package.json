@@ -5,7 +5,8 @@
   "dependencies": {
     "@craco/craco": "^6.4.5",
     "@emotion/babel-preset-css-prop": "^11.10.0",
-    "@emotion/react": "^11.10.4",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -13,6 +14,7 @@
     "@types/node": "^16.11.59",
     "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",
+    "antd": "^5.6.4",
     "axios": "^0.27.2",
     "korean-regexp": "^1.0.9",
     "react": "^18.2.0",

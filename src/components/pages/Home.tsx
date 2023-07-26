@@ -1,24 +1,24 @@
 import SearchBar from '../home-components/search-bar/SearchBar';
-import { css } from '@emotion/react';
 import Header from '../common/Header';
 import CompanyList from '../home-components/company/CompanyList';
 import { useRecoilValue } from 'recoil';
 import { isLoadingAtoms } from '../../recoil/atoms';
 import LoadingModal from '../common/modal/LoadingModal';
+import styled from '@emotion/styled';
+
+const Container = styled.div`
+  width: 100vw;
+`;
 
 function Home() {
   const isLoading = useRecoilValue(isLoadingAtoms);
   return (
-    <div
-      css={css({
-        width: '100vw',
-      })}
-    >
+    <Container>
       <Header />
       <SearchBar />
       <CompanyList />
       {isLoading && <LoadingModal />}
-    </div>
+    </Container>
   );
 }
 

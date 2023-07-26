@@ -1,28 +1,35 @@
-import { css } from '@emotion/react';
-import { useRef } from 'react';
+import { useEffect, useState } from 'react';
 import SearchOptionContainer from './search-option/SearchOptionContainer';
 import PaginationContainer from './page/PaginationContainer';
-import SearchInput from './search-input/SearchInput';
+import SearchInput from './SearchInput';
 import RecentSearchContainer from './recent-search/RecentSearchContainer';
+import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
+import { isLoadingAtoms } from '../../../recoil/atoms';
+
+const Container = styled.div`
+  display: grid;
+  grid-template-rows: repeat(4, 100px);
+  gap: 24px;
+  align-items: center;
+  padding: 1.5rem;
+`;
 
 function SearchBar() {
-  const inputElement = useRef<HTMLInputElement>(null);
+  const [searchText, setSearchText] = useState<string>('');
+  const isLoading = useRecoilValue(isLoadingAtoms);
+
+  useEffect(() => {
+    setSearchText('');
+  }, [isLoading]);
 
   return (
-    <div
-      css={css({
-        display: 'grid',
-        gridTemplateRows: 'repeat(4, 1fr)',
-        gap: '1rem',
-        alignItems: 'center',
-        padding: '1.5rem',
-      })}
-    >
+    <Container>
       <RecentSearchContainer />
-      <SearchInput inputElement={inputElement} />
-      <SearchOptionContainer inputElement={inputElement} />
+      <SearchInput searchText={searchText} setSearchText={setSearchText} />
+      <SearchOptionContainer searchText={searchText} />
       <PaginationContainer />
-    </div>
+    </Container>
   );
 }
 

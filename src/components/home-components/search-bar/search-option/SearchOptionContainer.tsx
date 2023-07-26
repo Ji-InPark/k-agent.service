@@ -1,37 +1,46 @@
-import React, { RefObject } from 'react';
-import { css } from '@emotion/react';
+import React, { useCallback } from 'react';
 import { selectedGovernmentLocationAtoms, selectedSectorAtoms } from '../../../../recoil/atoms';
 import SearchOption from './SearchOption';
 import SearchService from '../../../../service/SearchService';
+import styled from '@emotion/styled';
+import { Button as AntdButton } from 'antd';
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  justify-self: center;
+  width: 70%;
+  max-width: 500px;
+`;
+
+const Button = styled(AntdButton)`
+  width: 100%;
+`;
 
 type Props = {
-  inputElement: RefObject<HTMLInputElement>;
+  searchText: string;
 };
 
-function SearchOptionContainer({ inputElement }: Props) {
+function SearchOptionContainer({ searchText }: Props) {
   const searchCompany = SearchService();
 
+  const onSearch = useCallback(() => {
+    if (!searchCompany) {
+      return;
+    }
+
+    searchCompany({ searchText, useOption: true });
+  }, [searchText, searchCompany]);
+
   return (
-    <div
-      css={css({
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: '2rem',
-        justifySelf: 'center',
-        width: '70%',
-        maxWidth: 500,
-      })}
-    >
+    <Container>
       <SearchOption recoilVariable={selectedGovernmentLocationAtoms} apiUrl={'/government-locations'} defaultText={'전체 지역'} />
       <SearchOption recoilVariable={selectedSectorAtoms} apiUrl={'/sectors'} defaultText={'전체 업종'} />
-      <button
-        onClick={() => {
-          searchCompany({ searchText: inputElement.current!.value, useOption: true });
-        }}
-      >
-        조회
-      </button>
-    </div>
+      <Button onClick={onSearch}>조회</Button>
+    </Container>
   );
 }
 
