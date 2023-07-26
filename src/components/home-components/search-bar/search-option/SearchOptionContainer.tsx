@@ -28,9 +28,7 @@ function SearchOptionContainer({ searchText }: Props) {
   const searchCompany = SearchService();
 
   const onSearch = useCallback(() => {
-    if (!searchCompany) {
-      return;
-    }
+    if (!searchCompany) return;
 
     searchCompany({ searchText, useOption: true });
   }, [searchText, searchCompany]);
