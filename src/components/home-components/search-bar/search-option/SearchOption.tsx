@@ -42,14 +42,14 @@ function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
     search.get<Array<string>>(apiUrl).then((response) => {
       setOptionStrings(response.data);
     });
-    setSelectedOptionString(cachedItem ?? '');
+    setSelectedOptionString(cachedItem ?? defaultText);
   }, []);
 
   if (!optionStrings.length) {
     return <></>;
   }
 
-  return <Select defaultValue={defaultText} options={options} onChange={(value) => onChange(value as string)} />;
+  return <Select defaultValue={cachedItem ?? defaultText} options={options} onChange={(value) => onChange(value as string)} />;
 }
 
 export default SearchOption;
