@@ -30,9 +30,7 @@ function SearchInput({ searchText, setSearchText }: Props) {
   const setAutoCompleteCompanyList = useSetRecoilState(autocompleteCompanyListAtoms);
 
   const options = useMemo(() => {
-    if (!searchText || !autoCompleteCompanyList || !autoCompleteCompanyList?.companies || !autoCompleteCompanyList.companies?.length) {
-      return;
-    }
+    if (!searchText || !autoCompleteCompanyList?.companies?.length) return;
 
     const { companies } = autoCompleteCompanyList;
 
@@ -40,9 +38,7 @@ function SearchInput({ searchText, setSearchText }: Props) {
   }, [searchText, autoCompleteCompanyList]);
 
   useEffect(() => {
-    if (!searchText) {
-      return;
-    }
+    if (!searchText) return;
 
     const { source: regex } = getRegExp(searchText, { ignoreCase: false, initialSearch: true });
 
