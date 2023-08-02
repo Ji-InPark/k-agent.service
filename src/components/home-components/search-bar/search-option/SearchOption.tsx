@@ -19,7 +19,7 @@ type Props = {
 
 function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
   const [strings, setStrings] = useState<Array<string>>([]);
-  const setSelectedString = useSetRecoilState(recoilVariable);
+  const setSelectedOptionString = useSetRecoilState(recoilVariable);
   const cachedItem = localStorage.getItem(defaultText);
 
   const options = useMemo(() => {
@@ -36,7 +36,7 @@ function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
         return;
       }
 
-      setSelectedString(selectedValue);
+      setSelectedOptionString(selectedValue);
       localStorage.setItem(defaultText, selectedValue);
     },
     [defaultText],
@@ -46,7 +46,7 @@ function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
     search.get<Array<string>>(apiUrl).then((response) => {
       setStrings(response.data);
     });
-    setSelectedString(cachedItem ?? '');
+    setSelectedOptionString(cachedItem ?? '');
   }, []);
 
   if (!strings.length) {
