@@ -18,23 +18,19 @@ type Props = {
 };
 
 function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
-  const [strings, setStrings] = useState<Array<string>>([]);
+  const [optionStrings, setOptionStrings] = useState<Array<string>>([]);
   const setSelectedOptionString = useSetRecoilState(recoilVariable);
   const cachedItem = localStorage.getItem(defaultText);
 
   const options = useMemo(() => {
-    if (!strings) {
-      return;
-    }
+    if (!optionStrings) return;
 
-    return [{ value: defaultText, label: defaultText }, ...strings.map((value) => ({ value, label: value }))];
-  }, [strings, defaultText]);
+    return [{ value: defaultText, label: defaultText }, ...optionStrings.map((value) => ({ value, label: value }))];
+  }, [optionStrings, defaultText]);
 
   const onChange = useCallback(
     (selectedValue: string) => {
-      if (!selectedValue) {
-        return;
-      }
+      if (!selectedValue) return;
 
       setSelectedOptionString(selectedValue);
       localStorage.setItem(defaultText, selectedValue);
@@ -44,12 +40,12 @@ function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
 
   useEffect(() => {
     search.get<Array<string>>(apiUrl).then((response) => {
-      setStrings(response.data);
+      setOptionStrings(response.data);
     });
     setSelectedOptionString(cachedItem ?? '');
   }, []);
 
-  if (!strings.length) {
+  if (!optionStrings.length) {
     return <></>;
   }
 
