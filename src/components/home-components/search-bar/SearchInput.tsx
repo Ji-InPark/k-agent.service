@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { autocompleteCompanyListAtoms } from '../../../recoil/atoms';
 import styled from '@emotion/styled';
@@ -31,9 +31,7 @@ function SearchInput({ searchText, setSearchText }: Props) {
   const setAutoCompleteCompanyList = useSetRecoilState(autocompleteCompanyListAtoms);
   const searchService = SearchService();
 
-  const onSelect = useCallback((value: string) => {
-    searchService({ searchText: value });
-  }, []);
+  const onSelect = (value: string) => searchService({ searchText: value });
 
   const options = useMemo(() => {
     if (!searchText || !autoCompleteCompanyList?.companies?.length) return;
