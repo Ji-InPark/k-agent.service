@@ -6,6 +6,7 @@ import { AutoComplete as AntdAutoComplete, AutoCompleteProps as AntdAutoComplete
 import search from '../../../axios';
 import { AutoCompleteCompanyList } from '../../../types';
 import { getRegExp } from 'korean-regexp';
+import SearchService from '../../../service/SearchService';
 
 const Container = styled.div`
   display: flex;
@@ -28,11 +29,12 @@ type Props = {
 function SearchInput({ searchText, setSearchText }: Props) {
   const autoCompleteCompanyList = useRecoilValue(autocompleteCompanyListAtoms);
   const setAutoCompleteCompanyList = useSetRecoilState(autocompleteCompanyListAtoms);
+  const searchService = SearchService();
+
+  const onSelect = (value: string) => searchService({ searchText: value });
 
   const options = useMemo(() => {
-    if (!searchText || !autoCompleteCompanyList || !autoCompleteCompanyList?.companies || !autoCompleteCompanyList.companies?.length) {
-      return;
-    }
+    if (!searchText || !autoCompleteCompanyList?.companies?.length) return;
 
     const { companies } = autoCompleteCompanyList;
 
@@ -40,9 +42,7 @@ function SearchInput({ searchText, setSearchText }: Props) {
   }, [searchText, autoCompleteCompanyList]);
 
   useEffect(() => {
-    if (!searchText) {
-      return;
-    }
+    if (!searchText) return;
 
     const { source: regex } = getRegExp(searchText, { ignoreCase: false, initialSearch: true });
 
@@ -53,7 +53,14 @@ function SearchInput({ searchText, setSearchText }: Props) {
 
   return (
     <Container>
-      <AutoComplete value={searchText} options={options} placeholder="기업을 검색하세요" onChange={(event) => setSearchText(event ?? '')} allowClear={true} />
+      <AutoComplete
+        value={searchText}
+        options={options}
+        placeholder="기업을 검색하세요"
+        onChange={(event) => setSearchText(event ?? '')}
+        allowClear={true}
+        onSelect={onSelect}
+      />
     </Container>
   );
 }

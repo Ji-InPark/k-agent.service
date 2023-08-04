@@ -18,25 +18,21 @@ type Props = {
 };
 
 function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
-  const [strings, setStrings] = useState<Array<string>>([]);
-  const setSelectedString = useSetRecoilState(recoilVariable);
+  const [optionStrings, setOptionStrings] = useState<Array<string>>([]);
+  const setSelectedOptionString = useSetRecoilState(recoilVariable);
   const cachedItem = localStorage.getItem(defaultText);
 
   const options = useMemo(() => {
-    if (!strings) {
-      return;
-    }
+    if (!optionStrings) return;
 
-    return [{ value: defaultText, label: defaultText }, ...strings.map((value) => ({ value, label: value }))];
-  }, [strings, defaultText]);
+    return [{ value: defaultText, label: defaultText }, ...optionStrings.map((value) => ({ value, label: value }))];
+  }, [optionStrings, defaultText]);
 
   const onChange = useCallback(
     (selectedValue: string) => {
-      if (!selectedValue) {
-        return;
-      }
+      if (!selectedValue) return;
 
-      setSelectedString(selectedValue);
+      setSelectedOptionString(selectedValue);
       localStorage.setItem(defaultText, selectedValue);
     },
     [defaultText],
@@ -44,16 +40,16 @@ function SearchOption({ recoilVariable, apiUrl, defaultText }: Props) {
 
   useEffect(() => {
     search.get<Array<string>>(apiUrl).then((response) => {
-      setStrings(response.data);
+      setOptionStrings(response.data);
     });
-    setSelectedString(cachedItem ?? '');
+    setSelectedOptionString(cachedItem ?? defaultText);
   }, []);
 
-  if (!strings.length) {
+  if (!optionStrings.length) {
     return <></>;
   }
 
-  return <Select defaultValue={defaultText} options={options} onChange={(value) => onChange(value as string)} />;
+  return <Select defaultValue={cachedItem ?? defaultText} options={options} onChange={(value) => onChange(value as string)} />;
 }
 
 export default SearchOption;

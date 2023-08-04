@@ -21,7 +21,9 @@ function RecentSearchWordService(method: RecentSearchWordEnum) {
     setRecentSearchWords(words);
   };
 
-  return method == RecentSearchWordEnum.DELETE ? deleteRecentSearchWord : addRecentSearchWord;
+  const methods = [addRecentSearchWord, deleteRecentSearchWord];
+
+  return methods[method];
 }
 
 export default RecentSearchWordService;
