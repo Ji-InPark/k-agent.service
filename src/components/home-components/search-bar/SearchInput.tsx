@@ -42,13 +42,20 @@ function SearchInput({ searchText, setSearchText }: Props) {
   }, [searchText, autoCompleteCompanyList]);
 
   useEffect(() => {
-    if (!searchText) return;
+    if (!searchText) {
+      setAutoCompleteCompanyList({ companies: [], companyCount: 0 });
+      return;
+    }
 
-    const { source: regex } = getRegExp(searchText, { ignoreCase: false, initialSearch: true });
+    const delayDebounceFn = setTimeout(() => {
+      const { source: regex } = getRegExp(searchText, { ignoreCase: false, initialSearch: true });
 
-    search.post<AutoCompleteCompanyList>('/search/autocomplete', { regex }).then((response) => {
-      setAutoCompleteCompanyList(response.data);
-    });
+      search.post<AutoCompleteCompanyList>('/search/autocomplete', { regex }).then((response) => {
+        setAutoCompleteCompanyList(response.data);
+      });
+    }, 150);
+
+    return () => clearTimeout(delayDebounceFn);
   }, [searchText]);
 
   return (
