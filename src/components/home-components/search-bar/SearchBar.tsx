@@ -9,7 +9,7 @@ import { isLoadingAtoms } from '../../../recoil/atoms';
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: repeat(4, 100px);
+  grid-template-rows: 50px 50px 100px 100px;
   gap: 24px;
   align-items: center;
   padding: 1.5rem;
