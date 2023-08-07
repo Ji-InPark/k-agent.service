@@ -1,23 +1,26 @@
-import React from 'react';
-import { css } from '@emotion/react';
+import React, { useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { recentSearchWordsAtoms } from '../../../../recoil/atoms';
 import RecentSearchWord from './RecentSearchWord';
+import styled from '@emotion/styled';
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 function RecentSearchContainer() {
   const recentSearchWords = useRecoilValue(recentSearchWordsAtoms);
 
-  return (
-    <div
-      css={css({
-        display: 'flex',
-        justifyContent: 'center',
-        height: '2rem',
-      })}
-    >
-      {!recentSearchWords.length ? '최근 검색 기록이 없습니다.' : recentSearchWords.map((it) => <RecentSearchWord word={it} />)}
-    </div>
-  );
+  const searchWords = useMemo(() => {
+    if (!recentSearchWords || !recentSearchWords?.length) {
+      return '최근 검색 기록이 없습니다.';
+    }
+
+    return recentSearchWords.map((it) => <RecentSearchWord word={it} />);
+  }, [recentSearchWords]);
+
+  return <Container>{searchWords}</Container>;
 }
 
 export default RecentSearchContainer;
