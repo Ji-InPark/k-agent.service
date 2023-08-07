@@ -1,22 +1,28 @@
 import React from 'react';
-import { css } from '@emotion/react';
 import UpdateInformationItem from './UpdateInformationItem';
+import styled from '@emotion/styled';
+
+const Container = styled.div`
+  width: 40%;
+  min-width: 25rem;
+  margin: 0 auto;
+  user-select: none;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const Anchor = styled.a`
+  &:visited {
+    color: blue;
+  }
+`;
 
 function InformationContainer() {
   return (
-    <div
-      css={css({
-        width: '40%',
-        minWidth: '25rem',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        userSelect: 'none',
-        overflow: 'auto',
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
-      })}
-    >
+    <Container>
       <h1>K-Agent</h1>
       <h3>K-Agent는 병역 특례 업체 조회를 간편하게 하기 위해서 만든 웹사이트입니다.</h3>
       <h3>병역일터에서 제공하는 정보외에 모든 연동정보는 일련의 자동화를 통해서 연동되어 부정확할 수도 있습니다.</h3>
@@ -26,17 +32,9 @@ function InformationContainer() {
       <h1>정보 출처</h1>
       <h3>
         타 웹사이트 연동 이외 모든 정보는{' '}
-        <a
-          css={css({
-            '&:visited': {
-              color: 'blue',
-            },
-          })}
-          href="https://work.mma.go.kr/caisBYIS/main.do"
-          target={'_blank'}
-        >
+        <Anchor href="https://work.mma.go.kr/caisBYIS/main.do" target="_blank">
           병역일터
-        </a>
+        </Anchor>
         에서 가져온 자료입니다.
       </h3>
 
@@ -96,7 +94,7 @@ function InformationContainer() {
         <UpdateInformationItem>회사 평점 사이트(잡플래닛, 크레딧잡) 연동</UpdateInformationItem>
         <UpdateInformationItem>웹사이트 연동 버튼 디자인 개선</UpdateInformationItem>
       </ul>
-    </div>
+    </Container>
   );
 }
 
