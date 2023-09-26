@@ -1,5 +1,7 @@
 import { css } from '@emotion/react';
 import search from '../../../../axios';
+import { useSetRecoilState } from 'recoil';
+import { isLoadingAtoms } from '../../../../recoil/atoms';
 
 type Props = {
   id: number;
@@ -13,6 +15,8 @@ type Props = {
 };
 
 function KreditjobButton({ id, buttonBackgroundColor, kreditjobKey, buttonImageUrl, imageAlt, imageWidth = '100%', imageHeight = '100%', buttonText }: Props) {
+  const setIsLoading = useSetRecoilState(isLoadingAtoms);
+
   return (
     <div
       css={css({
@@ -34,10 +38,12 @@ function KreditjobButton({ id, buttonBackgroundColor, kreditjobKey, buttonImageU
         },
       })}
       onClick={async () => {
+        setIsLoading(true);
         const kreditjobUrl = `https://www.kreditjob.com/company/${
           kreditjobKey !== null ? kreditjobKey : await search.get<string>(`/kreditjob/${id}`).then((it) => it.data)
         }`;
         window.open(kreditjobUrl, '_blank');
+        setIsLoading(false);
       }}
     >
       <img
