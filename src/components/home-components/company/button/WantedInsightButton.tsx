@@ -48,7 +48,7 @@ function WantedInsightButton({
       })}
       onClick={async () => {
         setIsLoading(true);
-        const kreditjobUrl = `https://www.kreditjob.com/company/${
+        const kreditjobUrl = `https://insight.wanted.co.kr/company/${
           kreditjobKey !== null ? kreditjobKey : await search.get<string>(`/kreditjob/${id}`).then((it) => it.data)
         }`;
         window.open(kreditjobUrl, '_blank');
