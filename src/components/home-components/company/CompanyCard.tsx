@@ -2,7 +2,7 @@ import { Company } from '../../../types';
 import { css } from '@emotion/react';
 import Colors from '../../../assets/colors';
 import CompanyButton from './button/CompanyButton';
-import KreditjobButton from './button/KreditjobButton';
+import WantedInsightButton from './button/WantedInsightButton';
 
 type Props = {
   company: Company;
@@ -128,7 +128,7 @@ function CompanyCard({ company }: Props) {
             gridColumn: '1 / 3',
           })}
         >
-          <KreditjobButton
+          <WantedInsightButton
             id={company.id}
             buttonBackgroundColor={Colors.LIGHTSKY}
             kreditjobKey={company.kreditJobKey}

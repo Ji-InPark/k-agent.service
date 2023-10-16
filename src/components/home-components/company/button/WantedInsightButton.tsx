@@ -14,7 +14,16 @@ type Props = {
   buttonText?: string;
 };
 
-function KreditjobButton({ id, buttonBackgroundColor, kreditjobKey, buttonImageUrl, imageAlt, imageWidth = '100%', imageHeight = '100%', buttonText }: Props) {
+function WantedInsightButton({
+  id,
+  buttonBackgroundColor,
+  kreditjobKey,
+  buttonImageUrl,
+  imageAlt,
+  imageWidth = '100%',
+  imageHeight = '100%',
+  buttonText,
+}: Props) {
   const setIsLoading = useSetRecoilState(isLoadingAtoms);
 
   return (
@@ -59,4 +68,4 @@ function KreditjobButton({ id, buttonBackgroundColor, kreditjobKey, buttonImageU
   );
 }
 
-export default KreditjobButton;
+export default WantedInsightButton;
