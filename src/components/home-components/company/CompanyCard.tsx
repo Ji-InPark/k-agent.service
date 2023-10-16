@@ -90,9 +90,9 @@ function CompanyCard({ company }: Props) {
         <div>
           <CompanyButton
             buttonBackgroundColor={Colors.LIGHTVIOLET}
-            buttonOnClickUrl={'https://www.wanted.co.kr/search?query=' + company.companyKeyword}
-            buttonImageUrl={'https://theme.zdassets.com/theme_assets/9309779/4f2fb72a20c8e2ee37a305ef38ef1d144774a8df.png'}
-            imageAlt={'원티드'}
+            buttonOnClickUrl={'https://www.rocketpunch.com/companies?keywords=' + company.companyKeyword}
+            buttonImageUrl={'https://www.venturesquare.net/wp-content/uploads/2018/04/rocketpunch-logo-horizontal.png'}
+            imageAlt={'로켓펀치'}
             imageWidth={'60%'}
           />
         </div>
@@ -108,9 +108,9 @@ function CompanyCard({ company }: Props) {
         <div>
           <CompanyButton
             buttonBackgroundColor={Colors.LIGHTBEIGE}
-            buttonOnClickUrl={'https://www.rocketpunch.com/companies?keywords=' + company.companyKeyword}
-            buttonImageUrl={'https://www.venturesquare.net/wp-content/uploads/2018/04/rocketpunch-logo-horizontal.png'}
-            imageAlt={'로켓펀치'}
+            buttonOnClickUrl={'https://www.wanted.co.kr/search?query=' + company.companyKeyword}
+            buttonImageUrl={'https://theme.zdassets.com/theme_assets/9309779/4f2fb72a20c8e2ee37a305ef38ef1d144774a8df.png'}
+            imageAlt={'원티드'}
             imageWidth={'60%'}
           />
         </div>
@@ -132,7 +132,7 @@ function CompanyCard({ company }: Props) {
             id={company.id}
             buttonBackgroundColor={Colors.LIGHTSKY}
             kreditjobKey={company.kreditJobKey}
-            buttonImageUrl={'https://image.wanted.co.kr/kreditjob/www/logo-kreditjob@2x.png'}
+            buttonImageUrl={'https://image.wanted.co.kr/insight/www/images/logos.svg'}
             imageAlt={'크레딧잡'}
             imageHeight={'80%'}
           />
