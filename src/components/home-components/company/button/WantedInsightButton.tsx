@@ -6,7 +6,7 @@ import { isLoadingAtoms } from '../../../../recoil/atoms';
 type Props = {
   id: number;
   buttonBackgroundColor: string;
-  kreditjobKey: string;
+  wantedInsightKey: string;
   buttonImageUrl: string;
   imageAlt: string;
   imageWidth?: string;
@@ -17,7 +17,7 @@ type Props = {
 function WantedInsightButton({
   id,
   buttonBackgroundColor,
-  kreditjobKey,
+  wantedInsightKey,
   buttonImageUrl,
   imageAlt,
   imageWidth = '100%',
@@ -48,10 +48,11 @@ function WantedInsightButton({
       })}
       onClick={async () => {
         setIsLoading(true);
-        const kreditjobUrl = `https://insight.wanted.co.kr/company/${
-          kreditjobKey !== null ? kreditjobKey : await search.get<string>(`/kreditjob/${id}`).then((it) => it.data)
+        const wantedInsightUrl = `https://insight.wanted.co.kr/company/${
+          // todo replace with wantedInsight
+          wantedInsightKey !== null ? wantedInsightKey : await search.get<string>(`/kreditjob/${id}`).then((it) => it.data)
         }`;
-        window.open(kreditjobUrl, '_blank');
+        window.open(wantedInsightUrl, '_blank');
         setIsLoading(false);
       }}
     >
