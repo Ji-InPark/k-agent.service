@@ -50,7 +50,7 @@ function WantedInsightButton({
         setIsLoading(true);
         const wantedInsightUrl = `https://insight.wanted.co.kr/company/${
           // todo replace with wantedInsight
-          wantedInsightKey !== null ? wantedInsightKey : await search.get<string>(`/kreditjob/${id}`).then((it) => it.data)
+          wantedInsightKey !== null ? wantedInsightKey : await search.get<string>(`/wanted-insight/${id}`).then((it) => it.data)
         }`;
         window.open(wantedInsightUrl, '_blank');
         setIsLoading(false);
