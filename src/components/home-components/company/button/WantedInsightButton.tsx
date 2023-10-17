@@ -6,7 +6,7 @@ import { isLoadingAtoms } from '../../../../recoil/atoms';
 type Props = {
   id: number;
   buttonBackgroundColor: string;
-  kreditjobKey: string;
+  wantedInsightKey: string;
   buttonImageUrl: string;
   imageAlt: string;
   imageWidth?: string;
@@ -14,7 +14,16 @@ type Props = {
   buttonText?: string;
 };
 
-function KreditjobButton({ id, buttonBackgroundColor, kreditjobKey, buttonImageUrl, imageAlt, imageWidth = '100%', imageHeight = '100%', buttonText }: Props) {
+function WantedInsightButton({
+  id,
+  buttonBackgroundColor,
+  wantedInsightKey,
+  buttonImageUrl,
+  imageAlt,
+  imageWidth = '100%',
+  imageHeight = '100%',
+  buttonText,
+}: Props) {
   const setIsLoading = useSetRecoilState(isLoadingAtoms);
 
   return (
@@ -39,10 +48,11 @@ function KreditjobButton({ id, buttonBackgroundColor, kreditjobKey, buttonImageU
       })}
       onClick={async () => {
         setIsLoading(true);
-        const kreditjobUrl = `https://www.kreditjob.com/company/${
-          kreditjobKey !== null ? kreditjobKey : await search.get<string>(`/kreditjob/${id}`).then((it) => it.data)
+        const wantedInsightUrl = `https://insight.wanted.co.kr/company/${
+          // todo replace with wantedInsight
+          wantedInsightKey !== null ? wantedInsightKey : await search.get<string>(`/kreditjob/${id}`).then((it) => it.data)
         }`;
-        window.open(kreditjobUrl, '_blank');
+        window.open(wantedInsightUrl, '_blank');
         setIsLoading(false);
       }}
     >
@@ -59,4 +69,4 @@ function KreditjobButton({ id, buttonBackgroundColor, kreditjobKey, buttonImageU
   );
 }
 
-export default KreditjobButton;
+export default WantedInsightButton;
