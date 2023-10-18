@@ -131,7 +131,7 @@ function CompanyCard({ company }: Props) {
           <WantedInsightButton
             id={company.id}
             buttonBackgroundColor={Colors.LIGHTSKY}
-            wantedInsightKey={company.kreditJobKey}
+            wantedInsightKey={company.wantedInsightKey}
             buttonImageUrl={'https://image.wanted.co.kr/insight/www/images/logos.svg'}
             imageAlt={'크레딧잡'}
             imageHeight={'80%'}

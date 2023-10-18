@@ -8,8 +8,7 @@ export type Company = {
   companyScale: string;
   serviceType: string;
   companyKeyword: string;
-  // todo rename after migration
-  kreditJobKey: string;
+  wantedInsightKey: string;
 };
 
 export type CompanyList = {
