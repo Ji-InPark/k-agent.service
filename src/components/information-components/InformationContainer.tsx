@@ -55,6 +55,12 @@ function InformationContainer() {
       <br />
 
       <h1>K-Agent 업데이트 내용</h1>
+      <h2>2023년 10월 16일</h2>
+      <ul>
+        <UpdateInformationItem>KreditJob이 Wanted Insight로 변경된 건 대응</UpdateInformationItem>
+        <UpdateInformationItem>빠른 정보 업데이트를 위한 서비스 구조 2차 개편</UpdateInformationItem>
+      </ul>
+
       <h2>2023년 07월 09일</h2>
       <ul>
         <UpdateInformationItem>빠른 정보 업데이트를 위한 서비스 구조 개편</UpdateInformationItem>
