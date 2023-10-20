@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import UpdateInformationItem from './UpdateInformationItem';
+import CompanyUpdateHistoryContainer from './company-update-history/CompanyUpdateHistoryContainer';
 
 function InformationContainer() {
   return (
@@ -43,14 +44,7 @@ function InformationContainer() {
       <br />
 
       <h1>정보 업데이트 이력</h1>
-      <ul>
-        <UpdateInformationItem>2023년 10월 17일 (현재 적용)</UpdateInformationItem>
-        <UpdateInformationItem>2023년 09월 20일</UpdateInformationItem>
-        <UpdateInformationItem>2023년 07월 09일</UpdateInformationItem>
-        <UpdateInformationItem>2023년 05월 29일</UpdateInformationItem>
-        <UpdateInformationItem>2022년 12월 30일</UpdateInformationItem>
-        <UpdateInformationItem>2022년 10월 26일</UpdateInformationItem>
-      </ul>
+      <CompanyUpdateHistoryContainer />
 
       <br />
 
