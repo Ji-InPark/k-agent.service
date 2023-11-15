@@ -1,7 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import UpdateInformationItem from './UpdateInformationItem';
-import CompanyUpdateHistoryContainer from './company-update-history/CompanyUpdateHistoryContainer';
 
 function InformationContainer() {
   return (
@@ -40,15 +39,16 @@ function InformationContainer() {
         </a>
         에서 가져온 자료입니다.
       </h3>
-
-      <br />
-
-      <h1>정보 업데이트 이력</h1>
-      <CompanyUpdateHistoryContainer />
+      <h3>매일 새벽 3시에 병역일터에서 정보를 가져와서 업데이트를 진행합니다.</h3>
 
       <br />
 
       <h1>K-Agent 업데이트 내용</h1>
+      <h2>2023년 11월 15일</h2>
+      <ul>
+        <UpdateInformationItem>일일 병역일터 정보 동기화 기능 구현</UpdateInformationItem>
+      </ul>
+
       <h2>2023년 10월 16일</h2>
       <ul>
         <UpdateInformationItem>KreditJob이 Wanted Insight로 변경된 건 대응</UpdateInformationItem>
