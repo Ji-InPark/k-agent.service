@@ -49,10 +49,14 @@ function WantedInsightButton({
       onClick={async () => {
         setIsLoading(true);
         const wantedInsightUrl = `https://insight.wanted.co.kr/company/${
-          wantedInsightKey !== null ? wantedInsightKey : await search.get<string>(`/wanted-insight/${id}`).then((it) => it.data)
+          wantedInsightKey !== null
+            ? wantedInsightKey
+            : await search
+                .get<string>(`/wanted-insight/${id}`)
+                .then((it) => it.data)
+                .finally(() => setIsLoading(false))
         }`;
         window.open(wantedInsightUrl, '_blank');
-        setIsLoading(false);
       }}
     >
       <img
