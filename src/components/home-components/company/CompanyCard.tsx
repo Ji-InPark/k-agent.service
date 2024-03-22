@@ -3,142 +3,115 @@ import { css } from '@emotion/react';
 import Colors from '../../../assets/colors';
 import CompanyButton from './button/CompanyButton';
 import WantedInsightButton from './button/WantedInsightButton';
+import styled from '@emotion/styled';
 
-type Props = {
-  company: Company;
-};
+const Card = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  padding: 1rem;
+  box-shadow: rgba(149, 157, 165, 0.4) 0 8px 24px;
+`;
+const CardTitle = styled.h2`
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid black;
+`;
 
+const CardDescription = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 1rem;
+  align-items: center;
+  align-self: center;
+  text-align: center;
+  justify-content: space-around;
+  margin-top: 1rem;
+`;
+
+const CardGridContent = styled.div`
+  display: grid;
+  align-self: center;
+  margin-top: 1rem;
+  grid-template-rows: repeat(4, minmax(3rem, 3rem));
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 0 2rem 0 2rem;
+`;
+
+const CardPanel = styled.div<{ fill?: number }>`
+  grid-column: ${({ fill = 1 }) => `${fill} span / ${fill} span`};
+`;
+
+type Props = { company: Company };
 function CompanyCard({ company }: Props) {
   return (
-    <div
-      css={css({
-        display: 'flex',
-        flexDirection: 'column',
-        maxWidth: 600,
-        width: '80%',
-        marginTop: 25,
-        marginBottom: 25,
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        borderRadius: 10,
-        boxSizing: 'border-box',
-        padding: 5,
-        boxShadow: 'rgba(149, 157, 165, 0.4) 0px 8px 24px',
-      })}
-    >
-      <div
-        css={css({
-          width: '100%',
-          textAlign: 'center',
-          fontSize: '2rem',
-          fontWeight: 'bold',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-        })}
-      >
-        {company.companyName}
-      </div>
-      <div>
-        <hr />
-      </div>
-      <div
-        css={css({
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          fontSize: '1rem',
-          alignItems: 'center',
-          alignSelf: 'center',
-          textAlign: 'center',
-          justifyContent: 'space-around',
-          width: '80%',
-          marginTop: '1rem',
-        })}
-      >
+    <Card>
+      <CardTitle>{company.companyName}</CardTitle>
+      <CardDescription>
         <div css={css({ fontSize: '1.5rem', fontWeight: 'bold' })}>{company.serviceType}</div>
         <div>
           <div>{company.companyScale}</div>
           <div>{company.companySector}</div>
         </div>
-      </div>
-      <div
-        css={css({
-          display: 'grid',
-          width: '80%',
-          alignSelf: 'center',
-          marginTop: '1rem',
-          gridTemplateRows: 'repeat(4, minmax(3rem, 3rem))',
-          gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: '1rem',
-        })}
-      >
-        <div
-          css={css({
-            gridRow: '1 / 2',
-            gridColumn: '1 / 3',
-          })}
-        >
+      </CardDescription>
+      <CardGridContent>
+        <CardPanel fill={2}>
           <CompanyButton
             buttonBackgroundColor={Colors.NAVERGREEN}
-            buttonOnClickUrl={'https://map.naver.com/v5/search/' + company.companyLocation}
-            buttonImageUrl={'https://mir-s3-cdn-cf.behance.net/user/276/a78c6531673609.5703570bc812f.png'}
-            imageAlt={'네이버'}
-            imageHeight={'80%'}
-            buttonText={'네이버 지도'}
+            buttonOnClickUrl={`https://map.naver.com/v5/search/${company.companyLocation}`}
+            buttonImageUrl="https://mir-s3-cdn-cf.behance.net/user/276/a78c6531673609.5703570bc812f.png"
+            imageAlt="네이버"
+            imageHeight="80%"
+            buttonText="네이버 지도"
           />
-        </div>
-        <div>
-          <CompanyButton
-            buttonBackgroundColor={Colors.LIGHTVIOLET}
-            buttonOnClickUrl={'https://www.rocketpunch.com/companies?keywords=' + company.companyKeyword}
-            buttonImageUrl={'https://www.venturesquare.net/wp-content/uploads/2018/04/rocketpunch-logo-horizontal.png'}
-            imageAlt={'로켓펀치'}
-            imageWidth={'60%'}
-          />
-        </div>
-        <div>
-          <CompanyButton
-            buttonBackgroundColor={Colors.LIGHTVIOLET}
-            buttonOnClickUrl={'https://www.jobkorea.co.kr/Search/?stext=' + company.companyKeyword + '&tabType=corp&Page_No=1'}
-            buttonImageUrl={'https://i.jobkorea.kr/content/images/ver_1/gnb/jk_logo.png?20220926'}
-            imageAlt={'잡코리아'}
-            imageWidth={'60%'}
-          />
-        </div>
-        <div>
-          <CompanyButton
-            buttonBackgroundColor={Colors.LIGHTBEIGE}
-            buttonOnClickUrl={'https://www.wanted.co.kr/search?query=' + company.companyKeyword}
-            buttonImageUrl={'https://theme.zdassets.com/theme_assets/9309779/4f2fb72a20c8e2ee37a305ef38ef1d144774a8df.png'}
-            imageAlt={'원티드'}
-            imageWidth={'60%'}
-          />
-        </div>
-        <div>
-          <CompanyButton
-            buttonBackgroundColor={Colors.LIGHTBEIGE}
-            buttonOnClickUrl={'https://www.jobplanet.co.kr/search?query=' + company.companyKeyword}
-            buttonImageUrl={'https://jpassets.jobplanet.co.kr/production/uploads/material/media/2746/img_logo_jp_200217.png'}
-            imageAlt={'잡플래닛'}
-            imageWidth={'60%'}
-          />
-        </div>
-        <div
-          css={css({
-            gridColumn: '1 / 3',
-          })}
-        >
+        </CardPanel>
+        <CompanyButton
+          buttonBackgroundColor={Colors.LIGHTVIOLET}
+          buttonOnClickUrl={`https://www.rocketpunch.com/companies?keywords=${company.companyKeyword}`}
+          buttonImageUrl="https://www.venturesquare.net/wp-content/uploads/2018/04/rocketpunch-logo-horizontal.png"
+          imageAlt="로켓펀치"
+          imageWidth="60%"
+        />
+        <CompanyButton
+          buttonBackgroundColor={Colors.LIGHTVIOLET}
+          buttonOnClickUrl={`https://www.jobkorea.co.kr/Search/?stext=${company.companyKeyword}`}
+          buttonImageUrl="https://i.jobkorea.kr/content/images/ver_1/gnb/jk_logo.png?20220926"
+          imageAlt="잡코리아"
+          imageWidth="60%"
+        />
+        <CompanyButton
+          buttonBackgroundColor={Colors.LIGHTBEIGE}
+          buttonOnClickUrl={`https://www.wanted.co.kr/search?query=${company.companyKeyword}`}
+          buttonImageUrl="https://theme.zdassets.com/theme_assets/9309779/4f2fb72a20c8e2ee37a305ef38ef1d144774a8df.png"
+          imageAlt="원티드"
+          imageWidth="60%"
+        />
+        <CompanyButton
+          buttonBackgroundColor={Colors.LIGHTBEIGE}
+          buttonOnClickUrl={`https://www.jobplanet.co.kr/search?query=${company.companyKeyword}`}
+          buttonImageUrl="https://jpassets.jobplanet.co.kr/production/uploads/material/media/2746/img_logo_jp_200217.png"
+          imageAlt="잡플래닛"
+          imageWidth="60%"
+        />
+        <CardPanel fill={2}>
           <WantedInsightButton
             id={company.id}
             buttonBackgroundColor={Colors.LIGHTSKY}
             wantedInsightKey={company.wantedInsightKey}
-            buttonImageUrl={'https://image.wanted.co.kr/insight/www/images/logos.svg'}
-            imageAlt={'크레딧잡'}
-            imageHeight={'80%'}
+            buttonImageUrl="https://image.wanted.co.kr/insight/www/images/logos.svg"
+            imageAlt="크레딧잡"
+            imageHeight="80%"
           />
-        </div>
-      </div>
-    </div>
+        </CardPanel>
+      </CardGridContent>
+    </Card>
   );
 }
 
