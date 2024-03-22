@@ -6,7 +6,7 @@ import RecentSearchContainer from './recent-search/RecentSearchContainer';
 import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
 import { isLoadingAtoms } from '../../../recoil/atoms';
-import { useScroll } from '../../../hooks/useScroll';
+import { useScrollY } from '../../../hooks/useScrollY';
 
 const Container = styled.div<{ scroll: number }>`
   position: sticky;
@@ -22,7 +22,7 @@ const Container = styled.div<{ scroll: number }>`
 `;
 
 function SearchBar() {
-  const scroll = useScroll(300);
+  const scroll = useScrollY(300);
   const [searchText, setSearchText] = useState<string>('');
   const isLoading = useRecoilValue(isLoadingAtoms);
 

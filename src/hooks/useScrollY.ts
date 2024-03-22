@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export const useScroll = (maxScroll: number) => {
+export const useScrollY = (maxScroll: number) => {
   const [scrollY, setScrollY] = useState(0);
 
   const handler = () => setScrollY(Math.min(window.scrollY, maxScroll));
