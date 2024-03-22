@@ -1,45 +1,52 @@
 import { useRecoilValue } from 'recoil';
 import { companyListAtoms, selectedPageNumberAtoms } from '../../../recoil/atoms';
 import { useEffect, useRef, useState } from 'react';
-import { css } from '@emotion/react';
 import CompanyCard from './CompanyCard';
+import styled from '@emotion/styled';
+import { Company } from '../../../types';
+
+const CompanyListContainer = styled.div`
+  width: 100%;
+  max-width: 38rem;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const CompanyListWrapper = styled.ul`
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+`;
+
+const CompanyItem = styled.li`
+  list-style-type: none;
+`;
 
 function CompanyList() {
   const companyList = useRecoilValue(companyListAtoms).companies;
-  const companyCount = useRecoilValue(companyListAtoms).companyCount;
-  const [companies, setCompanies] = useState<JSX.Element[]>([]);
+  const [companies, setCompanies] = useState<Company[]>([]);
   const resultView = useRef<HTMLDivElement>(null);
   const selectedPageNumber = useRecoilValue(selectedPageNumberAtoms);
 
   useEffect(() => {
-    if (!companyList) return;
+    resultView.current!.scroll(0, 0);
 
-    const result = [];
-
-    for (let i = 0; i < Math.min(companyCount - selectedPageNumber * 20, 20); i++) {
-      const company = companyList[selectedPageNumber * 20 + i];
-      result.push(<CompanyCard key={company.id} company={company} />);
-    }
-
-    resultView.current?.scroll(0, 0);
-
-    setCompanies(result);
+    const offset = 20;
+    const pageOffset = selectedPageNumber * offset;
+    setCompanies(companyList.slice(pageOffset, pageOffset + offset));
   }, [companyList, selectedPageNumber]);
 
   return (
-    <div
-      ref={resultView}
-      css={css({
-        width: '100vw',
-        maxHeight: 'calc(100vh - 18rem - 25px)',
-        overflow: 'auto',
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
-      })}
-    >
-      {companies}
-    </div>
+    <CompanyListContainer ref={resultView}>
+      <CompanyListWrapper>
+        {companies.map((company) => (
+          <CompanyItem key={company.id}>
+            <CompanyCard company={company} />
+          </CompanyItem>
+        ))}
+      </CompanyListWrapper>
+    </CompanyListContainer>
   );
 }
 

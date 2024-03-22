@@ -21,6 +21,11 @@ function PaginationContainer() {
     setCurrentPageNumbers(result);
   }, [companyList, firstPageNumberInCurrentContainer]);
 
+  const curryingHandler = (value: number) => () => {
+    setSelectedPageNumber(value);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div
       css={css({
@@ -30,41 +35,13 @@ function PaginationContainer() {
         justifySelf: 'center',
       })}
     >
-      <PageButton
-        text="<<"
-        onClick={() => {
-          setSelectedPageNumber(0);
-        }}
-      />
-      <PageButton
-        text="<"
-        onClick={() => {
-          setSelectedPageNumber(Math.max(firstPageNumberInCurrentContainer - 10, 0));
-        }}
-      />
+      <PageButton text="<<" onClick={curryingHandler(0)} />
+      <PageButton text="<" onClick={curryingHandler(Math.max(firstPageNumberInCurrentContainer - 10, 0))} />
       {currentPageNumbers.map((it) => {
-        return (
-          <PageButton
-            key={it}
-            text={it}
-            onClick={() => {
-              setSelectedPageNumber(Number(it) - 1);
-            }}
-          />
-        );
+        return <PageButton key={it} text={it} onClick={curryingHandler(Number(it) - 1)} />;
       })}
-      <PageButton
-        text=">"
-        onClick={() => {
-          setSelectedPageNumber(Math.min(firstPageNumberInCurrentContainer + 10, lastPageNumber - 1));
-        }}
-      />
-      <PageButton
-        text=">>"
-        onClick={() => {
-          setSelectedPageNumber(lastPageNumber - (lastPageNumber % 10));
-        }}
-      />
+      <PageButton text=">" onClick={curryingHandler(Math.min(firstPageNumberInCurrentContainer + 10, lastPageNumber - 1))} />
+      <PageButton text=">>" onClick={curryingHandler(lastPageNumber - (lastPageNumber % 10))} />
     </div>
   );
 }
