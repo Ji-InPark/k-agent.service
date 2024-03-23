@@ -7,17 +7,25 @@ import LoadingModal from '../common/modal/LoadingModal';
 import styled from '@emotion/styled';
 
 const Container = styled.div`
-  width: 100vw;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+`;
+
+const Main = styled.main`
+  flex: 1;
 `;
 
 function Home() {
   const isLoading = useRecoilValue(isLoadingAtoms);
   return (
     <Container>
-      <Header />
-      <SearchBar />
-      <CompanyList />
-      {isLoading && <LoadingModal />}
+      <Main>
+        <Header />
+        <SearchBar />
+        <CompanyList />
+        {isLoading && <LoadingModal />}
+      </Main>
     </Container>
   );
 }

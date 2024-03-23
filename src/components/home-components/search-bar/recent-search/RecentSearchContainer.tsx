@@ -17,7 +17,7 @@ function RecentSearchContainer() {
       return '최근 검색 기록이 없습니다.';
     }
 
-    return recentSearchWords.map((it) => <RecentSearchWord word={it} />);
+    return recentSearchWords.map((it) => <RecentSearchWord key={it} word={it} />);
   }, [recentSearchWords]);
 
   return <Container>{searchWords}</Container>;
