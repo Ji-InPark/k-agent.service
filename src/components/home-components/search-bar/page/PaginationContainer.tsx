@@ -1,28 +1,18 @@
 import { css } from '@emotion/react';
 import PageButton from './PageButton';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { companyListAtoms, firstPageNumberInCurrentContainerSelector, lastPageNumberSelector, selectedPageNumberAtoms } from '../../../../recoil/atoms';
-import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { companyListAtoms } from '../../../../recoil/atoms';
 
 function PaginationContainer() {
-  const setSelectedPageNumber = useSetRecoilState(selectedPageNumberAtoms);
-  const firstPageNumberInCurrentContainer = useRecoilValue(firstPageNumberInCurrentContainerSelector);
-  const lastPageNumber = useRecoilValue(lastPageNumberSelector);
-  const [currentPageNumbers, setCurrentPageNumbers] = useState<string[]>([]);
-  const companyList = useRecoilValue(companyListAtoms).companies;
+  const companyResponse = useRecoilValue(companyListAtoms);
+  const selectedPageNumber = companyResponse.pageable.pageNumber;
+  const firstPageNumberInCurrentContainer = Math.floor(selectedPageNumber / 10) * 10 + 1;
 
-  useEffect(() => {
-    const result = [];
-
-    for (let i = 1; i <= Math.min(lastPageNumber - firstPageNumberInCurrentContainer, 10); i++) {
-      result.push(String(firstPageNumberInCurrentContainer + i));
-    }
-
-    setCurrentPageNumbers(result);
-  }, [companyList, firstPageNumberInCurrentContainer]);
+  const currentPageNumberLength = Math.min(Math.max(companyResponse.totalPages - (firstPageNumberInCurrentContainer + 9), 0), 10);
+  const currentPageNumbers = Array.from(Array(currentPageNumberLength)).map((_, index) => firstPageNumberInCurrentContainer + index);
 
   const handleSelectPage = (value: number) => () => {
-    setSelectedPageNumber(value);
+    console.log(value);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -30,18 +20,20 @@ function PaginationContainer() {
     <div
       css={css({
         display: 'grid',
-        gridTemplateColumns: `repeat(${4 + currentPageNumbers.length}, 1fr)`,
+        gridAutoFlow: 'column',
         gap: '0.2rem',
         justifySelf: 'center',
       })}
     >
       <PageButton text="<<" onClick={handleSelectPage(0)} />
-      <PageButton text="<" onClick={handleSelectPage(Math.max(firstPageNumberInCurrentContainer - 10, 0))} />
+      <PageButton text="<" onClick={handleSelectPage(0)} />
       {currentPageNumbers.map((it) => {
+        const pageNumber = firstPageNumberInCurrentContainer + Number(it);
+        if (pageNumber > companyResponse.totalPages) return null;
         return <PageButton key={it} text={it} onClick={handleSelectPage(Number(it) - 1)} />;
       })}
-      <PageButton text=">" onClick={handleSelectPage(Math.min(firstPageNumberInCurrentContainer + 10, lastPageNumber - 1))} />
-      <PageButton text=">>" onClick={handleSelectPage(lastPageNumber - (lastPageNumber % 10))} />
+      <PageButton text=">" onClick={handleSelectPage(firstPageNumberInCurrentContainer + 10)} />
+      <PageButton text=">>" onClick={handleSelectPage(companyResponse.totalPages - 1)} />
     </div>
   );
 }

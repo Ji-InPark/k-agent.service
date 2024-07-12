@@ -1,9 +1,8 @@
 import { useRecoilValue } from 'recoil';
-import { companyListAtoms, selectedPageNumberAtoms } from '../../../recoil/atoms';
-import { useEffect, useRef, useState } from 'react';
+import { companyListAtoms } from '../../../recoil/atoms';
+import { useEffect, useRef } from 'react';
 import CompanyCard from './CompanyCard';
 import styled from '@emotion/styled';
-import { Company } from '../../../types';
 
 const CompanyListContainer = styled.div`
   width: 100%;
@@ -24,23 +23,17 @@ const CompanyItem = styled.li`
 `;
 
 function CompanyList() {
-  const companyList = useRecoilValue(companyListAtoms).companies;
-  const [companies, setCompanies] = useState<Company[]>([]);
+  const companyList = useRecoilValue(companyListAtoms).content;
   const resultView = useRef<HTMLDivElement>(null);
-  const selectedPageNumber = useRecoilValue(selectedPageNumberAtoms);
 
   useEffect(() => {
     resultView.current!.scroll(0, 0);
-
-    const offset = 20;
-    const pageOffset = selectedPageNumber * offset;
-    setCompanies(companyList.slice(pageOffset, pageOffset + offset));
-  }, [companyList, selectedPageNumber]);
+  }, [companyList]);
 
   return (
     <CompanyListContainer ref={resultView}>
       <CompanyListWrapper>
-        {companies.map((company) => (
+        {companyList.map((company) => (
           <CompanyItem key={company.id}>
             <CompanyCard company={company} />
           </CompanyItem>

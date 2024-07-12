@@ -1,15 +1,13 @@
 import { css } from '@emotion/react';
 import Colors from '../../../../assets/colors';
-import { useRecoilValue } from 'recoil';
-import { selectedPageNumberAtoms } from '../../../../recoil/atoms';
 
 type Props = {
-  text: string;
+  text: string | number;
   onClick: () => void;
 };
 
 function PageButton({ text, onClick }: Props) {
-  const selectedPageNumber = useRecoilValue(selectedPageNumberAtoms);
+  const selectedPageNumber = 0;
 
   return (
     <span

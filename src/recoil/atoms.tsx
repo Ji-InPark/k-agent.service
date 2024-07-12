@@ -1,9 +1,36 @@
-import { atom, selector } from 'recoil';
-import { AutoCompleteCompanyList, CompanyList } from '../types';
+import { atom } from 'recoil';
+import { Company, PageResponse } from '../types';
 
-export const companyListAtoms = atom<CompanyList>({
+export const companyListAtoms = atom<PageResponse<Company>>({
   key: 'companyListAtoms',
-  default: { companies: [], companyCount: 0 },
+  default: {
+    totalPages: 0,
+    totalElements: 0,
+    pageable: {
+      pageNumber: 0,
+      pageSize: 0,
+      sort: {
+        sorted: false,
+        unsorted: false,
+        empty: false,
+      },
+      offset: 0,
+      unpaged: false,
+      paged: false,
+    },
+    numberOfElements: 0,
+    first: false,
+    last: false,
+    size: 0,
+    content: [],
+    number: 0,
+    sort: {
+      sorted: false,
+      unsorted: false,
+      empty: false,
+    },
+    empty: false,
+  },
 });
 
 export const selectedGovernmentLocationAtoms = atom<string>({
@@ -16,29 +43,6 @@ export const selectedSectorAtoms = atom<string>({
   default: '',
 });
 
-export const selectedPageNumberAtoms = atom<number>({
-  key: 'selectedPageNumberAtoms',
-  default: 0,
-});
-
-export const lastPageNumberSelector = selector<number>({
-  key: 'lastPageNumberSelector',
-  get: ({ get }) => {
-    const companyCount = get(companyListAtoms).companyCount;
-
-    return Math.ceil(companyCount / 20);
-  },
-});
-
-export const firstPageNumberInCurrentContainerSelector = selector<number>({
-  key: 'firstPageNumberInCurrentContainerSelector',
-  get: ({ get }) => {
-    const selectedPageNumber = get(selectedPageNumberAtoms);
-
-    return selectedPageNumber - (selectedPageNumber % 10);
-  },
-});
-
 export const isLoadingAtoms = atom<boolean>({
   key: 'isLoadingAtoms',
   default: false,
@@ -49,9 +53,9 @@ export const autocompleteHoverIndexAtoms = atom<number>({
   default: -1,
 });
 
-export const autocompleteCompanyListAtoms = atom<AutoCompleteCompanyList>({
+export const autocompleteCompanyListAtoms = atom<Company[]>({
   key: 'autocompleteCompanyListAtoms',
-  default: { companies: [], companyCount: 0 },
+  default: [],
 });
 
 export const recentSearchWordsAtoms = atom<Array<string>>({

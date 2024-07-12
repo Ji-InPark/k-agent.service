@@ -4,9 +4,9 @@ import { autocompleteCompanyListAtoms } from '../../../recoil/atoms';
 import styled from '@emotion/styled';
 import { AutoComplete as AntdAutoComplete, AutoCompleteProps as AntdAutoCompleteProps } from 'antd';
 import search from '../../../axios';
-import { AutoCompleteCompanyList } from '../../../types';
 import { getRegExp } from 'korean-regexp';
 import SearchService from '../../../service/SearchService';
+import { Company } from '../../../types';
 
 const Container = styled.div`
   display: flex;
@@ -34,23 +34,21 @@ function SearchInput({ searchText, setSearchText }: Props) {
   const onSelect = (value: string) => searchService({ searchText: value });
 
   const options = useMemo(() => {
-    if (!searchText || !autoCompleteCompanyList?.companies?.length) return;
+    if (!searchText || !autoCompleteCompanyList?.length) return;
 
-    const { companies } = autoCompleteCompanyList;
-
-    return companies.map((companyName) => ({ label: companyName, value: companyName }));
+    return autoCompleteCompanyList.map((company) => ({ label: company.companyName, value: company.companyName }));
   }, [searchText, autoCompleteCompanyList]);
 
   useEffect(() => {
     if (!searchText) {
-      setAutoCompleteCompanyList({ companies: [], companyCount: 0 });
+      setAutoCompleteCompanyList([]);
       return;
     }
 
     const delayDebounceFn = setTimeout(() => {
       const { source: regex } = getRegExp(searchText, { ignoreCase: false, initialSearch: true });
 
-      search.post<AutoCompleteCompanyList>('/search/autocomplete', { regex }).then((response) => {
+      search.post<Company[]>('/search/autocomplete', { regex }).then((response) => {
         setAutoCompleteCompanyList(response.data);
       });
     }, 150);
