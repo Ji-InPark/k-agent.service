@@ -1,8 +1,15 @@
-import { css } from '@emotion/react';
 import PageButton from './PageButton';
 import { useRecoilValue } from 'recoil';
 import { companyResponseAtoms } from '../../../../recoil/atoms';
 import useCompany from '../../../../hooks/useCompany';
+import styled from '@emotion/styled';
+
+const Container = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  gap: 0.2rem;
+  justify-self: center;
+`;
 
 function PaginationContainer() {
   const companyResponse = useRecoilValue(companyResponseAtoms);
@@ -21,14 +28,7 @@ function PaginationContainer() {
   };
 
   return (
-    <div
-      css={css({
-        display: 'grid',
-        gridAutoFlow: 'column',
-        gap: '0.2rem',
-        justifySelf: 'center',
-      })}
-    >
+    <Container>
       <PageButton text="<<" onClick={handleSelectPage(0)} />
       <PageButton text="<" onClick={handleSelectPage(Math.max(firstPageNumberInCurrentContainer - 10, 0))} />
       {currentPageNumbers.map((pageNumber) => {
@@ -37,7 +37,7 @@ function PaginationContainer() {
       })}
       <PageButton text=">" onClick={handleSelectPage(firstPageNumberInCurrentContainer + 10)} />
       <PageButton text=">>" onClick={handleSelectPage(Math.floor(companyResponse.totalPages / 10) * 10)} />
-    </div>
+    </Container>
   );
 }
 
