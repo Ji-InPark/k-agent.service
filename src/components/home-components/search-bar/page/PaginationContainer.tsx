@@ -18,7 +18,6 @@ function PaginationContainer() {
 
   const currentPageNumberLength = Math.min(Math.max(companyResponse.totalPages - firstPageNumberInCurrentContainer, 0), 10);
   const currentPageNumbers = Array.from(Array(currentPageNumberLength)).map((_, index) => firstPageNumberInCurrentContainer + index + 1);
-  console.log(firstPageNumberInCurrentContainer, currentPageNumberLength, currentPageNumbers);
 
   const { changePage } = useCompany();
 
