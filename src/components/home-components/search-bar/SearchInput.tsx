@@ -6,7 +6,6 @@ import { AutoComplete as AntdAutoComplete, AutoCompleteProps as AntdAutoComplete
 import search from '../../../axios';
 import { getRegExp } from 'korean-regexp';
 import useCompany from '../../../hooks/useCompany';
-import { Company } from '../../../types';
 
 const Container = styled.div`
   display: flex;
@@ -36,7 +35,7 @@ function SearchInput({ searchText, setSearchText }: Props) {
   const options = useMemo(() => {
     if (!searchText || !autoCompleteCompanyList?.length) return;
 
-    return autoCompleteCompanyList.map((company) => ({ label: company.companyName, value: company.companyName }));
+    return autoCompleteCompanyList.map((companyName) => ({ label: companyName, value: companyName }));
   }, [searchText, autoCompleteCompanyList]);
 
   useEffect(() => {
@@ -48,7 +47,7 @@ function SearchInput({ searchText, setSearchText }: Props) {
     const delayDebounceFn = setTimeout(() => {
       const { source: regex } = getRegExp(searchText, { ignoreCase: false, initialSearch: true });
 
-      search.post<Company[]>('/search/autocomplete', { regex }).then((response) => {
+      search.post<string[]>('/search/autocomplete', { regex }).then((response) => {
         setAutoCompleteCompanyList(response.data);
       });
     }, 150);

@@ -53,7 +53,7 @@ export const autocompleteHoverIndexAtoms = atom<number>({
   default: -1,
 });
 
-export const autocompleteCompanyListAtoms = atom<Company[]>({
+export const autocompleteCompanyListAtoms = atom<string[]>({
   key: 'autocompleteCompanyListAtoms',
   default: [],
 });
