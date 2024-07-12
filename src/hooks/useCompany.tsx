@@ -1,7 +1,7 @@
 import search from '../axios';
 import { Company, PageResponse, RecentSearchWordEnum } from '../types';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { autocompleteHoverIndexAtoms, companyListAtoms, isLoadingAtoms, selectedGovernmentLocationAtoms, selectedSectorAtoms } from '../recoil/atoms';
+import { autocompleteHoverIndexAtoms, companyResponseAtoms, isLoadingAtoms, selectedGovernmentLocationAtoms, selectedSectorAtoms } from '../recoil/atoms';
 import RecentSearchWordService from '../service/RecentSearchWordService';
 
 interface NamedParameter {
@@ -11,7 +11,7 @@ interface NamedParameter {
 }
 
 function useCompany() {
-  const setCompanyList = useSetRecoilState(companyListAtoms);
+  const setCompanyResponse = useSetRecoilState(companyResponseAtoms);
   const setIsLoading = useSetRecoilState(isLoadingAtoms);
   const setHoverIndex = useSetRecoilState(autocompleteHoverIndexAtoms);
   const governmentLocation = useRecoilValue(selectedGovernmentLocationAtoms);
@@ -32,7 +32,7 @@ function useCompany() {
         sector: useOption ? sector : null,
         page,
       })
-      .then((response) => setCompanyList(response.data))
+      .then((response) => setCompanyResponse(response.data))
       .catch((error) => console.log(error))
       .finally(() => setIsLoading(false));
   };

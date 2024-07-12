@@ -1,10 +1,10 @@
 import { css } from '@emotion/react';
 import PageButton from './PageButton';
 import { useRecoilValue } from 'recoil';
-import { companyListAtoms } from '../../../../recoil/atoms';
+import { companyResponseAtoms } from '../../../../recoil/atoms';
 
 function PaginationContainer() {
-  const companyResponse = useRecoilValue(companyListAtoms);
+  const companyResponse = useRecoilValue(companyResponseAtoms);
   const selectedPageNumber = companyResponse.pageable.pageNumber;
   const firstPageNumberInCurrentContainer = Math.floor(selectedPageNumber / 10) * 10 + 1;
 

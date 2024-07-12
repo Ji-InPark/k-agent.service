@@ -1,8 +1,8 @@
 import { atom } from 'recoil';
 import { Company, PageResponse } from '../types';
 
-export const companyListAtoms = atom<PageResponse<Company>>({
-  key: 'companyListAtoms',
+export const companyResponseAtoms = atom<PageResponse<Company>>({
+  key: 'companyResponseAtoms',
   default: {
     totalPages: 0,
     totalElements: 0,

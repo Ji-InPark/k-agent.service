@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil';
-import { companyListAtoms } from '../../../recoil/atoms';
+import { companyResponseAtoms } from '../../../recoil/atoms';
 import { useEffect, useRef } from 'react';
 import CompanyCard from './CompanyCard';
 import styled from '@emotion/styled';
@@ -23,17 +23,17 @@ const CompanyItem = styled.li`
 `;
 
 function CompanyList() {
-  const companyList = useRecoilValue(companyListAtoms).content;
+  const companies = useRecoilValue(companyResponseAtoms).content;
   const resultView = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     resultView.current!.scroll(0, 0);
-  }, [companyList]);
+  }, [companies]);
 
   return (
     <CompanyListContainer ref={resultView}>
       <CompanyListWrapper>
-        {companyList.map((company) => (
+        {companies.map((company) => (
           <CompanyItem key={company.id}>
             <CompanyCard company={company} />
           </CompanyItem>
