@@ -7,6 +7,7 @@ import RecentSearchWordService from '../service/RecentSearchWordService';
 interface NamedParameter {
   searchText: string;
   useOption?: boolean;
+  page?: number;
 }
 
 function useCompany() {
@@ -17,7 +18,7 @@ function useCompany() {
   const sector = useRecoilValue(selectedSectorAtoms);
   const addRecentSearchWordService = RecentSearchWordService(RecentSearchWordEnum.ADD);
 
-  const searchCompany = ({ searchText, useOption = false }: NamedParameter) => {
+  const searchCompany = ({ searchText, useOption = false, page = 0 }: NamedParameter) => {
     setHoverIndex(-1);
 
     setIsLoading(true);
@@ -29,6 +30,7 @@ function useCompany() {
         companyName: searchText,
         governmentLocation: useOption ? governmentLocation : null,
         sector: useOption ? sector : null,
+        page,
       })
       .then((response) => setCompanyList(response.data))
       .catch((error) => console.log(error))
