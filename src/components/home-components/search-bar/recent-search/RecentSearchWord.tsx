@@ -2,7 +2,7 @@ import React from 'react';
 import X from '../../../../assets/icon/XIcon';
 import RecentSearchWordService from '../../../../service/RecentSearchWordService';
 import { RecentSearchWordEnum } from '../../../../types';
-import SearchService from '../../../../service/SearchService';
+import useCompany from '../../../../hooks/useCompany';
 import styled from '@emotion/styled';
 
 const Container = styled.div`
@@ -42,11 +42,11 @@ type Props = {
 
 export default function RecentSearchWord({ word }: Props) {
   const deleteRecentSearchWordService = RecentSearchWordService(RecentSearchWordEnum.DELETE);
-  const searchService = SearchService();
+  const { searchCompany } = useCompany();
 
   return (
     <Container>
-      <Text onClick={() => searchService({ searchText: word })}>{word}</Text>
+      <Text onClick={() => searchCompany({ searchText: word })}>{word}</Text>
       <Icon onClick={() => deleteRecentSearchWordService(word)}>
         <X width="1.2rem" height="1.2rem" />
       </Icon>
