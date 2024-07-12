@@ -28,6 +28,7 @@ function useCompany() {
     addRecentSearchWordService(searchText);
 
     searchParams.set('searchText', searchText);
+    searchParams.set('useOption', useOption.toString());
     searchParams.set('page', page.toString());
     setSearchParams(searchParams);
 
@@ -43,7 +44,14 @@ function useCompany() {
       .finally(() => setIsLoading(false));
   };
 
-  return { searchCompany };
+  const changePage = (page: number) => {
+    const searchText = searchParams.get('searchText') || '';
+    const useOption = searchParams.get('useOption') === 'true';
+
+    searchCompany({ searchText, useOption, page });
+  };
+
+  return { searchCompany, changePage };
 }
 
 export default useCompany;
