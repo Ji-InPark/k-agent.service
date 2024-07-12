@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import PageButton from './PageButton';
 import { useRecoilValue } from 'recoil';
 import { companyResponseAtoms } from '../../../../recoil/atoms';
+import useCompany from '../../../../hooks/useCompany';
 
 function PaginationContainer() {
   const companyResponse = useRecoilValue(companyResponseAtoms);
@@ -11,8 +12,10 @@ function PaginationContainer() {
   const currentPageNumberLength = Math.min(Math.max(companyResponse.totalPages - (firstPageNumberInCurrentContainer + 9), 0), 10);
   const currentPageNumbers = Array.from(Array(currentPageNumberLength)).map((_, index) => firstPageNumberInCurrentContainer + index);
 
-  const handleSelectPage = (value: number) => () => {
-    console.log(value);
+  const { changePage } = useCompany();
+
+  const handleSelectPage = (page: number) => () => {
+    changePage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
