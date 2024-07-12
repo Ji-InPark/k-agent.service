@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import Colors from '../../../../assets/colors';
+import { useSearchParams } from 'react-router-dom';
 
 type Props = {
   text: string | number;
@@ -7,7 +8,8 @@ type Props = {
 };
 
 function PageButton({ text, onClick }: Props) {
-  const selectedPageNumber = 0;
+  const [searchParams] = useSearchParams();
+  const selectedPageNumber = Number(searchParams.get('page')) || 0;
 
   return (
     <span
