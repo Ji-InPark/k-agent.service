@@ -3,6 +3,7 @@ import { Company, PageResponse, RecentSearchWordEnum } from '../types';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { autocompleteHoverIndexAtoms, companyResponseAtoms, isLoadingAtoms, selectedGovernmentLocationAtoms, selectedSectorAtoms } from '../recoil/atoms';
 import RecentSearchWordService from '../service/RecentSearchWordService';
+import { useSearchParams } from 'react-router-dom';
 
 interface NamedParameter {
   searchText: string;
@@ -17,6 +18,7 @@ function useCompany() {
   const governmentLocation = useRecoilValue(selectedGovernmentLocationAtoms);
   const sector = useRecoilValue(selectedSectorAtoms);
   const addRecentSearchWordService = RecentSearchWordService(RecentSearchWordEnum.ADD);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const searchCompany = ({ searchText, useOption = false, page = 0 }: NamedParameter) => {
     setHoverIndex(-1);
@@ -24,6 +26,10 @@ function useCompany() {
     setIsLoading(true);
 
     addRecentSearchWordService(searchText);
+
+    searchParams.set('searchText', searchText);
+    searchParams.set('page', page.toString());
+    setSearchParams(searchParams);
 
     search
       .post<PageResponse<Company>>('/search', {
