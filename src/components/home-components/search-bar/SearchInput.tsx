@@ -4,9 +4,8 @@ import { autocompleteCompanyListAtoms } from '../../../recoil/atoms';
 import styled from '@emotion/styled';
 import { AutoComplete as AntdAutoComplete, AutoCompleteProps as AntdAutoCompleteProps } from 'antd';
 import search from '../../../axios';
-import { AutoCompleteCompanyList } from '../../../types';
 import { getRegExp } from 'korean-regexp';
-import SearchService from '../../../service/SearchService';
+import useCompany from '../../../hooks/useCompany';
 
 const Container = styled.div`
   display: flex;
@@ -29,28 +28,26 @@ type Props = {
 function SearchInput({ searchText, setSearchText }: Props) {
   const autoCompleteCompanyList = useRecoilValue(autocompleteCompanyListAtoms);
   const setAutoCompleteCompanyList = useSetRecoilState(autocompleteCompanyListAtoms);
-  const searchService = SearchService();
+  const { searchCompany } = useCompany();
 
-  const onSelect = (value: string) => searchService({ searchText: value });
+  const onSelect = (value: string) => searchCompany({ searchText: value });
 
   const options = useMemo(() => {
-    if (!searchText || !autoCompleteCompanyList?.companies?.length) return;
+    if (!searchText || !autoCompleteCompanyList?.length) return;
 
-    const { companies } = autoCompleteCompanyList;
-
-    return companies.map((companyName) => ({ label: companyName, value: companyName }));
+    return autoCompleteCompanyList.map((companyName) => ({ label: companyName, value: companyName }));
   }, [searchText, autoCompleteCompanyList]);
 
   useEffect(() => {
     if (!searchText) {
-      setAutoCompleteCompanyList({ companies: [], companyCount: 0 });
+      setAutoCompleteCompanyList([]);
       return;
     }
 
     const delayDebounceFn = setTimeout(() => {
       const { source: regex } = getRegExp(searchText, { ignoreCase: false, initialSearch: true });
 
-      search.post<AutoCompleteCompanyList>('/search/autocomplete', { regex }).then((response) => {
+      search.post<string[]>('/search/autocomplete', { regex }).then((response) => {
         setAutoCompleteCompanyList(response.data);
       });
     }, 150);
