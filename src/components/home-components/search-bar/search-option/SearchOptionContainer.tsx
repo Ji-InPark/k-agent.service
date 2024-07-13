@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { selectedGovernmentLocationAtoms, selectedSectorAtoms } from '../../../../recoil/atoms';
 import SearchOption from './SearchOption';
-import SearchService from '../../../../service/SearchService';
+import useCompany from '../../../../hooks/useCompany';
 import styled from '@emotion/styled';
 import { Button as AntdButton } from 'antd';
 
@@ -25,7 +25,7 @@ type Props = {
 };
 
 function SearchOptionContainer({ searchText }: Props) {
-  const searchCompany = SearchService();
+  const { searchCompany } = useCompany();
 
   const onSearch = useCallback(() => {
     if (!searchCompany) {
