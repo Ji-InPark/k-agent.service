@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import Header from '../common/Header';
-import InformationContainer from '../information-components/InformationContainer';
+import Header from '@components/common/Header';
+import InformationContainer from '@components/information-components/InformationContainer';
 
 function Information() {
   return (

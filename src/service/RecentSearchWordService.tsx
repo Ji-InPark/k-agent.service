@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil';
-import { recentSearchWordsAtoms } from '../recoil/atoms';
-import { RecentSearchWordEnum } from '../types';
+import { recentSearchWordsAtoms } from '@atoms/atoms';
+import { RecentSearchWordEnum } from '@/types';
 
 function RecentSearchWordService(method: RecentSearchWordEnum) {
   const [recentSearchWords, setRecentSearchWords] = useRecoilState(recentSearchWordsAtoms);

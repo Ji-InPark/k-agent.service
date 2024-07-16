@@ -1,8 +1,8 @@
-import { useRecoilValue } from 'recoil';
-import { companyResponseAtoms } from '../../../recoil/atoms';
 import { useEffect, useRef } from 'react';
-import CompanyCard from './CompanyCard';
 import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
+import { companyResponseAtoms } from '@atoms/atoms';
+import CompanyCard from '@components/home-components/company/CompanyCard';
 
 const CompanyListContainer = styled.div`
   width: 100%;

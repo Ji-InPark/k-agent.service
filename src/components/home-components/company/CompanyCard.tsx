@@ -1,9 +1,9 @@
-import { Company } from '../../../types';
-import { css } from '@emotion/react';
-import Colors from '../../../assets/colors';
-import CompanyButton from './button/CompanyButton';
-import WantedInsightButton from './button/WantedInsightButton';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import CompanyButton from '@components/home-components/company/button/CompanyButton';
+import WantedInsightButton from '@components/home-components/company/button/WantedInsightButton';
+import Colors from '@assets/colors';
+import { Company } from '@/types';
 
 const Card = styled.div`
   width: 100%;
@@ -13,6 +13,7 @@ const Card = styled.div`
   padding: 1rem;
   box-shadow: rgba(149, 157, 165, 0.4) 0 8px 24px;
 `;
+
 const CardTitle = styled.h2`
   text-align: center;
   font-size: 2rem;
@@ -50,6 +51,7 @@ const CardPanel = styled.div<{ fill?: number }>`
 `;
 
 type Props = { company: Company };
+
 function CompanyCard({ company }: Props) {
   return (
     <Card>

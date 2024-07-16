@@ -1,9 +1,9 @@
-html{
+html {
   font-size: 16px;
 }
 
 @media screen and (max-width: 510px) {
-  html{
+  html {
     font-size: 11px;
   }
 }

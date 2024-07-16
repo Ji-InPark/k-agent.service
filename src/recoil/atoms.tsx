@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { Company, PageResponse } from '../types';
+import { Company, PageResponse } from '@/types';
 
 export const companyResponseAtoms = atom<PageResponse<Company>>({
   key: 'companyResponseAtoms',

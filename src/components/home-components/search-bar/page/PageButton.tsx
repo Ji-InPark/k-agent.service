@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
-import Colors from '../../../../assets/colors';
 import { useSearchParams } from 'react-router-dom';
+import Colors from '@assets/colors';
 
 type Props = {
   text: string | number;
