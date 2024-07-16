@@ -10,6 +10,22 @@
   "plugins": ["import", "prettier"],
   "rules": {
     "react/jsx-filename-extension": "off",
-    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never",
+        "": "never"
+      }
+    ]
   }
 }
