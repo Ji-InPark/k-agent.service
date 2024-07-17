@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import search from '../../../axios';
-import UpdateInformationItem from '../UpdateInformationItem';
+import search from '@/axios';
+import UpdateInformationItem from '@components/information-components/UpdateInformationItem';
 
 function CompanyUpdateHistoryContainer() {
   const [companyUpdateHistory, setCompanyUpdateHistory] = useState<String[]>([]);

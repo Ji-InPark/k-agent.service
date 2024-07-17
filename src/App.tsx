@@ -1,10 +1,10 @@
 import React from 'react';
-import Home from './components/pages/Home';
+import Home from '@components/pages/Home';
 import { RecoilRoot } from 'recoil';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Information from './components/pages/Information';
+import Information from '@components/pages/Information';
 import ReactGA from 'react-ga4';
-import Admin from './components/pages/Admin';
+import Admin from '@components/pages/Admin';
 import { ConfigProvider } from 'antd';
 import locale from 'antd/locale/ko_KR';
 

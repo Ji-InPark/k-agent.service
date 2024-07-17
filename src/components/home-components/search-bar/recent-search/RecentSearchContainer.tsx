@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
-import { useRecoilValue } from 'recoil';
-import { recentSearchWordsAtoms } from '../../../../recoil/atoms';
-import RecentSearchWord from './RecentSearchWord';
 import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
+import { recentSearchWordsAtoms } from '@atoms/atoms';
+import RecentSearchWord from '@components/home-components/search-bar/recent-search/RecentSearchWord';
 
 const Container = styled.div`
   display: flex;

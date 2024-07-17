@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
-import { selectedGovernmentLocationAtoms, selectedSectorAtoms } from '../../../../recoil/atoms';
-import SearchOption from './SearchOption';
-import useCompany from '../../../../hooks/useCompany';
 import styled from '@emotion/styled';
 import { Button as AntdButton } from 'antd';
+import { selectedGovernmentLocationAtoms, selectedSectorAtoms } from '@atoms/atoms';
+import SearchOption from '@components/home-components/search-bar/search-option/SearchOption';
+import useCompany from '@hooks/useCompany';
 
 const Container = styled.div`
   display: flex;

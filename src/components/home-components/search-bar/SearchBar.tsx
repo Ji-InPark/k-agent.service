@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import SearchOptionContainer from './search-option/SearchOptionContainer';
-import PaginationContainer from './page/PaginationContainer';
-import SearchInput from './SearchInput';
-import RecentSearchContainer from './recent-search/RecentSearchContainer';
 import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
-import { isLoadingAtoms } from '../../../recoil/atoms';
-import { useScrollY } from '../../../hooks/useScrollY';
+import { isLoadingAtoms } from '@atoms/atoms';
+import { useScrollY } from '@hooks/useScrollY';
+import SearchOptionContainer from '@components/home-components/search-bar/search-option/SearchOptionContainer';
+import PaginationContainer from '@components/home-components/search-bar/page/PaginationContainer';
+import SearchInput from '@components/home-components/search-bar/SearchInput';
+import RecentSearchContainer from '@components/home-components/search-bar/recent-search/RecentSearchContainer';
 
 const Container = styled.div<{ scroll: number }>`
   position: sticky;

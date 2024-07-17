@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
-import QuestionMark from '../../assets/icon/QuestionMark';
 import styled from '@emotion/styled';
-import logo from '../../assets/icon/title.png';
+import { Link } from 'react-router-dom';
+import QuestionMark from '@assets/icon/QuestionMark';
+import logo from '@assets/icon/title.png';
 
 const Container = styled.div`
   background: #777d71;

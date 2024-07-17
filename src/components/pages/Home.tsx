@@ -1,10 +1,10 @@
-import SearchBar from '../home-components/search-bar/SearchBar';
-import Header from '../common/Header';
-import CompanyList from '../home-components/company/CompanyList';
-import { useRecoilValue } from 'recoil';
-import { isLoadingAtoms } from '../../recoil/atoms';
-import LoadingModal from '../common/modal/LoadingModal';
 import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
+import { isLoadingAtoms } from '@atoms/atoms';
+import SearchBar from '@components/home-components/search-bar/SearchBar';
+import Header from '@components/common/Header';
+import CompanyList from '@components/home-components/company/CompanyList';
+import LoadingModal from '@components/common/modal/LoadingModal';
 
 const Container = styled.div`
   display: flex;

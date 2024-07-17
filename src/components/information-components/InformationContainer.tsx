@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import UpdateInformationItem from './UpdateInformationItem';
+import UpdateInformationItem from '@components/information-components/UpdateInformationItem';
 
 function InformationContainer() {
   return (

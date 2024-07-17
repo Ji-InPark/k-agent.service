@@ -1,9 +1,9 @@
 import React, { ChangeEvent, useState } from 'react';
 import { css } from '@emotion/react';
-import search from '../../axios';
 import { useRecoilState } from 'recoil';
-import { isLoadingAtoms } from '../../recoil/atoms';
-import LoadingModal from '../common/modal/LoadingModal';
+import { isLoadingAtoms } from '@atoms/atoms';
+import search from '@/axios';
+import LoadingModal from '@components/common/modal/LoadingModal';
 
 function Admin() {
   const [password, setPassword] = useState('');

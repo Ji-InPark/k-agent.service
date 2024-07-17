@@ -1,8 +1,8 @@
-import PageButton from './PageButton';
-import { useRecoilValue } from 'recoil';
-import { companyResponseAtoms } from '../../../../recoil/atoms';
-import useCompany from '../../../../hooks/useCompany';
 import styled from '@emotion/styled';
+import { useRecoilValue } from 'recoil';
+import { companyResponseAtoms } from '@atoms/atoms';
+import useCompany from '@hooks/useCompany';
+import PageButton from '@components/home-components/search-bar/page/PageButton';
 
 const Container = styled.div`
   display: grid;
