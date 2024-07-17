@@ -1,9 +1,9 @@
-import search from '../axios';
-import { Company, PageResponse, RecentSearchWordEnum } from '../types';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { autocompleteHoverIndexAtoms, companyResponseAtoms, isLoadingAtoms, selectedGovernmentLocationAtoms, selectedSectorAtoms } from '../recoil/atoms';
-import RecentSearchWordService from '../service/RecentSearchWordService';
 import { useSearchParams } from 'react-router-dom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { autocompleteHoverIndexAtoms, companyResponseAtoms, isLoadingAtoms, selectedGovernmentLocationAtoms, selectedSectorAtoms } from '@atoms/atoms';
+import search from '@/axios';
+import RecentSearchWordService from '@/service/RecentSearchWordService';
+import { Company, PageResponse, RecentSearchWordEnum } from '@/types';
 
 interface NamedParameter {
   searchText: string;

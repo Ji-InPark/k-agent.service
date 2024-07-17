@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { autocompleteCompanyListAtoms } from '../../../recoil/atoms';
 import styled from '@emotion/styled';
-import { AutoComplete as AntdAutoComplete, AutoCompleteProps as AntdAutoCompleteProps } from 'antd';
-import search from '../../../axios';
 import { getRegExp } from 'korean-regexp';
-import useCompany from '../../../hooks/useCompany';
+import { AutoComplete as AntdAutoComplete, AutoCompleteProps as AntdAutoCompleteProps } from 'antd';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { autocompleteCompanyListAtoms } from '@atoms/atoms';
+import search from '@/axios';
+import useCompany from '@hooks/useCompany';
 
 const Container = styled.div`
   display: flex;

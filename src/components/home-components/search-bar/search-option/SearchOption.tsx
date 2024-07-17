@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import styled from '@emotion/styled';
 import { RecoilState, useSetRecoilState } from 'recoil';
 import { Select as AntdSelect } from 'antd';
-import search from '../../../../axios';
-import styled from '@emotion/styled';
+import search from '@/axios';
 
 const Select = styled(AntdSelect)`
   width: 100%;

@@ -1,9 +1,9 @@
 import React from 'react';
-import X from '../../../../assets/icon/XIcon';
-import RecentSearchWordService from '../../../../service/RecentSearchWordService';
-import { RecentSearchWordEnum } from '../../../../types';
-import useCompany from '../../../../hooks/useCompany';
 import styled from '@emotion/styled';
+import X from '@assets/icon/XIcon';
+import RecentSearchWordService from '@/service/RecentSearchWordService';
+import { RecentSearchWordEnum } from '@/types';
+import useCompany from '@hooks/useCompany';
 
 const Container = styled.div`
   display: flex;

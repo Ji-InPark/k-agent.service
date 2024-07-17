@@ -1,6 +1,6 @@
-import Colors from '../../../assets/colors';
-import Loading from '../../../assets/icon/Loading';
 import styled from '@emotion/styled';
+import Colors from '@assets/colors';
+import Loading from '@assets/icon/Loading';
 
 const Container = styled.div`
   z-index: 1000;

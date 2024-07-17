@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
-import search from '../../../../axios';
 import { useSetRecoilState } from 'recoil';
-import { isLoadingAtoms } from '../../../../recoil/atoms';
+import { isLoadingAtoms } from '@atoms/atoms';
+import search from '@/axios';
 
 type Props = {
   id: number;
